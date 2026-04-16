@@ -1,4 +1,26 @@
 {
   "title": "Public Title",
-  "description": "Shared text"
+  "description": "Shared text",
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "roles": "Roles & Permissions",
+    "organizations": "Organizations",
+    "branches": "Branches",
+    "attachments": "Attachments",
+    "activity": "Activity Log",
+    "parties": "Parties",
+    "accounts": "Accounts Tree",
+    "invoices": "Invoices",
+    "payments": "Payments",
+    "journal": "Journal",
+    "reports": "Reports",
+    "products": "Products",
+    "warehouses": "Warehouses"
+  },
+  "sections": {
+    "main": "Main",
+    "accounting": "Accounting",
+    "inventory": "Inventory"
+  }
 }

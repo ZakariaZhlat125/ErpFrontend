@@ -1,0 +1,33 @@
+{
+  "title": "My Establishment",
+  "subtitle": "Choose an establishment to access and manage it",
+  "addNew": "Add New Establishment",
+  "stats": {
+    "totalEstablishments": "Total Establishments",
+    "totalEmployees": "Total Employees",
+    "activeEstablishments": "Active Establishments"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "card": {
+    "employees": "employees",
+    "lastAccess": "Last access:",
+    "enter": "Enter"
+  },
+  "addCard": {
+    "title": "Add New Establishment",
+    "description": "Add a new establishment to start managing it",
+    "button": "Add Establishment"
+  },
+  "quickAccess": {
+    "title": "Quick Access",
+    "hr": "Human Resources",
+    "finance": "Finance",
+    "inventory": "Inventory",
+    "projects": "Projects",
+    "reports": "Reports",
+    "settings": "Settings"
+  }
+}

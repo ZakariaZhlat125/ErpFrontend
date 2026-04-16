@@ -1,3 +1,25 @@
 {
-  "title": "عنوان"
+  "title": "عنوان",
+  "sidebar": {
+    "dashboard": "لوحة التحكم",
+    "users": "المستخدمون",
+    "roles": "الأدوار والصلاحيات",
+    "organizations": "المنظمات",
+    "branches": "الفروع",
+    "attachments": "المرفقات",
+    "activity": "سجل النشاط",
+    "parties": "الأطراف",
+    "accounts": "شجرة الحسابات",
+    "invoices": "الفواتير",
+    "payments": "المدفوعات",
+    "journal": "دفتر اليومية",
+    "reports": "التقارير",
+    "products": "المنتجات",
+    "warehouses": "المستودعات"
+  },
+  "sections": {
+    "main": "الرئيسية",
+    "accounting": "المحاسبة",
+    "inventory": "المخزون"
+  }
 }

@@ -1,15 +1,30 @@
 // src/lib/i18n/getTranslations.ts
 import {createTranslator} from 'next-intl';
 import {getLocale} from 'next-intl/server';
+import path from 'path';
+import {promises as fs} from 'fs';
 
 type Messages = Record<string, any>;
 
 async function loadNamespace(locale: string, ns: string): Promise<Messages> {
+  // First try src/locales
   try {
     return (await import(`../../locales/${locale}/${ns}.json`)).default;
-  } catch {
-    return {};
-  }
+  } catch {}
+
+  // Then try features/{feature}/locales
+  try {
+    const featuresDir = path.join(process.cwd(), 'features');
+    const features = await fs.readdir(featuresDir);
+    
+    for (const feature of features) {
+      try {
+        return (await import(`../../../features/${feature}/locales/${locale}/${ns}.json`)).default;
+      } catch {}
+    }
+  } catch {}
+
+  return {};
 }
 
 export async function getTranslations(namespaces: string[] = ['public']) {

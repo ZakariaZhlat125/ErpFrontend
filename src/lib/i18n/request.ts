@@ -9,7 +9,10 @@ const DEFAULT_LOCALE = 'en'; // غيّره إذا مشروعك عربي افتر
 async function listNamespaces(locale?: string): Promise<string[]> {
   const safeLocale = locale || DEFAULT_LOCALE;
 
-  const dir = path.join(
+  const namespaces: string[] = ['public'];
+
+  // Load from src/locales
+  const mainLocaleDir = path.join(
     process.cwd(),
     'src',
     'locales',
@@ -17,29 +20,67 @@ async function listNamespaces(locale?: string): Promise<string[]> {
   );
 
   try {
-    const files = await fs.readdir(dir);
-
-    const namespaces = files
+    const files = await fs.readdir(mainLocaleDir);
+    const mainNamespaces = files
       .filter((f) => f.endsWith('.json'))
       .map((f) => f.replace(/\.json$/, ''));
+    
+    mainNamespaces.forEach(ns => {
+      if (!namespaces.includes(ns)) namespaces.push(ns);
+    });
+  } catch {}
 
-    if (!namespaces.includes('public')) namespaces.unshift('public');
+  // Load from features/{feature}/locales/{locale}
+  const featuresDir = path.join(process.cwd(), 'features');
+  try {
+    const features = await fs.readdir(featuresDir);
+    
+    for (const feature of features) {
+      const featureLocaleDir = path.join(
+        featuresDir,
+        feature,
+        'locales',
+        safeLocale
+      );
+      
+      try {
+        const files = await fs.readdir(featureLocaleDir);
+        const featureNamespaces = files
+          .filter((f) => f.endsWith('.json'))
+          .map((f) => f.replace(/\.json$/, ''));
+        
+        featureNamespaces.forEach(ns => {
+          if (!namespaces.includes(ns)) namespaces.push(ns);
+        });
+      } catch {}
+    }
+  } catch {}
 
-    return namespaces;
-  } catch {
-    return ['public'];
-  }
+  return namespaces;
 }
 
 async function loadNamespace(
   locale: string,
   ns: string
 ): Promise<Messages> {
+  // First try src/locales
   try {
     return (await import(`../../locales/${locale}/${ns}.json`)).default;
-  } catch {
-    return {};
-  }
+  } catch {}
+
+  // Then try features/{feature}/locales
+  try {
+    const featuresDir = path.join(process.cwd(), 'features');
+    const features = await fs.readdir(featuresDir);
+    
+    for (const feature of features) {
+      try {
+        return (await import(`../../../features/${feature}/locales/${locale}/${ns}.json`)).default;
+      } catch {}
+    }
+  } catch {}
+
+  return {};
 }
 
 export default getRequestConfig(async ({requestLocale}) => {

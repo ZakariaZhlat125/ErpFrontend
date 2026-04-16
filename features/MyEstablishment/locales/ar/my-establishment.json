@@ -1,0 +1,33 @@
+{
+  "title": "منشأتي",
+  "subtitle": "اختر منشأة للدخول إليها وإدارتها",
+  "addNew": "إضافة منشأة جديدة",
+  "stats": {
+    "totalEstablishments": "إجمالي المنشآت",
+    "totalEmployees": "إجمالي الموظفين",
+    "activeEstablishments": "المنشآت النشطة"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "card": {
+    "employees": "موظف",
+    "lastAccess": "آخر دخول:",
+    "enter": "الدخول"
+  },
+  "addCard": {
+    "title": "إضافة منشأة جديدة",
+    "description": "قم بإضافة منشأة جديدة للبدء في إدارتها",
+    "button": "إضافة منشأة"
+  },
+  "quickAccess": {
+    "title": "وصول سريع",
+    "hr": "الموارد البشرية",
+    "finance": "المالية",
+    "inventory": "المخزون",
+    "projects": "المشاريع",
+    "reports": "التقارير",
+    "settings": "الإعدادات"
+  }
+}
