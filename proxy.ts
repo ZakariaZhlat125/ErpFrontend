@@ -1,4 +1,4 @@
-// middleware.ts
+// proxy.ts
 import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({

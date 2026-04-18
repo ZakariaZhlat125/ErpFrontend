@@ -1,4 +1,4 @@
-import { RolesPermissions } from '@/features/RolesPermissions/RolesPermissions';
+import { RolesPermissions } from '@/features/MAIN/RolesPermissions/RolesPermissions';
 
 export default function RolesPermissionsPage() {
   return <RolesPermissions />;

@@ -1,11 +1,12 @@
 'use client';
 
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { Button as AntButton, ButtonProps as AntButtonProps } from 'antd';
 import { useTheme } from '@/lib/theme/use-theme';
 import { cn } from '@/lib/utils/cn';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'ghost';
+export interface ButtonProps extends Omit<AntButtonProps, 'size' | 'variant'> {
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'ghost' | 'link';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
 }
@@ -18,96 +19,56 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     isLoading = false,
     disabled,
     children,
+    onClick,
     ...props 
   }, ref) => {
     const { tokens } = useTheme();
 
-    const variantStyles = {
-      primary: {
-        background: tokens.primary,
-        color: '#FFFFFF',
-        hoverBackground: tokens.primary,
-      },
-      secondary: {
-        background: tokens.secondary,
-        color: tokens.text,
-        hoverBackground: tokens.secondary,
-      },
-      success: {
-        background: tokens.success,
-        color: '#FFFFFF',
-        hoverBackground: tokens.success,
-      },
-      warning: {
-        background: tokens.warning,
-        color: '#FFFFFF',
-        hoverBackground: tokens.warning,
-      },
-      danger: {
-        background: tokens.danger,
-        color: '#FFFFFF',
-        hoverBackground: tokens.danger,
-      },
-      ghost: {
-        background: 'transparent',
-        color: tokens.text,
-        hoverBackground: tokens.secondary,
-      },
-    };
+    const variantToType = {
+      primary: 'primary',
+      secondary: 'default',
+      success: 'primary',
+      warning: 'primary',
+      danger: 'primary',
+      ghost: 'text',
+      link: 'link',
+    } as const;
 
-    const sizeStyles = {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
-    };
+    const antdSize = {
+      sm: 'small',
+      md: 'middle',
+      lg: 'large',
+    } as const;
 
-    const style = variantStyles[variant];
+    const getCustomStyle = () => {
+      switch (variant) {
+        case 'primary':
+          return { backgroundColor: tokens.primary };
+        case 'success':
+          return { backgroundColor: tokens.success };
+        case 'warning':
+          return { backgroundColor: tokens.warning };
+        case 'danger':
+          return { backgroundColor: tokens.danger };
+        default:
+          return {};
+      }
+    };
 
     return (
-      <button
+      <AntButton
         ref={ref}
-        disabled={disabled || isLoading}
-        className={cn(
-          'neumorphic rounded-lg font-medium transition-all duration-200',
-          'hover:scale-105 active:scale-95',
-          'focus:outline-none focus:ring-2 focus:ring-offset-2',
-          'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
-          sizeStyles[size],
-          className
-        )}
-        style={{
-          backgroundColor: style.background,
-          color: style.color,
-          boxShadow: variant === 'ghost' 
-            ? 'none' 
-            : `8px 8px 16px ${tokens.shadowDark}, -8px -8px 16px ${tokens.shadowLight}`,
-        }}
+        type={variantToType[variant]}
+        size={antdSize[size]}
+        loading={isLoading}
+        disabled={disabled}
+        className={className}
+        style={getCustomStyle()}
+        onClick={onClick}
         {...props}
       >
-        {isLoading ? (
-          <span className="inline-flex items-center gap-2">
-            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-                fill="none"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              />
-            </svg>
-            Loading...
-          </span>
-        ) : (
-          children
-        )}
-      </button>
+        {children}
+      </AntButton>
     );
   }
 );

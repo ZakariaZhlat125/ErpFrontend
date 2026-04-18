@@ -1,10 +1,11 @@
 'use client';
 
-import { HTMLAttributes, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { Card as AntCard, CardProps as AntCardProps } from 'antd';
 import { useTheme } from '@/lib/theme/use-theme';
 import { cn } from '@/lib/utils/cn';
 
-export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends Omit<AntCardProps, 'variant'> {
   variant?: 'default' | 'flat' | 'inset';
 }
 
@@ -12,25 +13,15 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = 'default', children, ...props }, ref) => {
     const { tokens } = useTheme();
 
-    const variantClasses = {
-      default: 'neumorphic',
-      flat: 'neumorphic-flat',
-      inset: 'neumorphic-inset',
-    };
-
     return (
-      <div
+      <AntCard
         ref={ref}
-        className={cn(
-          variantClasses[variant],
-          'p-6 transition-all duration-200',
-          className
-        )}
+        className={className}
         style={{ backgroundColor: tokens.surface }}
         {...props}
       >
         {children}
-      </div>
+      </AntCard>
     );
   }
 );

@@ -15,11 +15,17 @@
     "journal": "دفتر اليومية",
     "reports": "التقارير",
     "products": "المنتجات",
-    "warehouses": "المستودعات"
+    "warehouses": "المستودعات",
+    "stockBalances": "أرصدة المخزون",
+    "stockMovements": "حركات المخزون",
+    "stockTransfer": "نقل المخزون",
+    "stockCount": "جرد المخزون",
+    "settings": "الإعدادات"
   },
   "sections": {
     "main": "الرئيسية",
     "accounting": "المحاسبة",
-    "inventory": "المخزون"
+    "inventory": "المخزون",
+    "settings": "الإعدادات"
   }
 }

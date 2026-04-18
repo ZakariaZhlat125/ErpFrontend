@@ -1,5 +1,5 @@
-import { SettingsDashboard } from '@/features/Settings/SettingsDashboard';
+import { Settings } from '@/features/Settings/Settings';
 
 export default function SettingsPage() {
-  return <SettingsDashboard />;
+  return <Settings />;
 }

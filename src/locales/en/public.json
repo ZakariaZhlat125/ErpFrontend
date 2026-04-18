@@ -16,11 +16,17 @@
     "journal": "Journal",
     "reports": "Reports",
     "products": "Products",
-    "warehouses": "Warehouses"
+    "warehouses": "Warehouses",
+    "stockBalances": "Stock Balances",
+    "stockMovements": "Stock Movements",
+    "stockTransfer": "Stock Transfer",
+    "stockCount": "Stock Count",
+    "settings": "Settings"
   },
   "sections": {
     "main": "Main",
     "accounting": "Accounting",
-    "inventory": "Inventory"
+    "inventory": "Inventory",
+    "settings": "Settings"
   }
 }

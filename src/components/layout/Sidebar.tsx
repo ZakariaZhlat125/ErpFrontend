@@ -21,6 +21,12 @@ import {
   MenuUnfoldOutlined,
   DownOutlined,
   CaretDownOutlined,
+  WalletOutlined,
+  DatabaseOutlined,
+  SwapOutlined,
+  SyncOutlined,
+  CalculatorOutlined,
+  SettingOutlined,
 } from '@ant-design/icons';
 
 interface NavItem {
@@ -46,7 +52,12 @@ const navItems: NavItem[] = [
   { key: 'journal', icon: <FileTextOutlined />, labelKey: 'public.sidebar.journal', section: 'journal', category: 'ACCOUNTING' },
   { key: 'reports', icon: <LineChartOutlined />, labelKey: 'public.sidebar.reports', section: 'reports', category: 'ACCOUNTING' },
   { key: 'products', icon: <ShopOutlined />, labelKey: 'public.sidebar.products', section: 'products', category: 'INVENTORY' },
-  { key: 'warehouses', icon: <ShoppingOutlined />, labelKey: 'public.sidebar.warehouses', section: 'warehouses', category: 'INVENTORY' },
+  { key: 'warehouses', icon: <DatabaseOutlined />, labelKey: 'public.sidebar.warehouses', section: 'warehouses', category: 'INVENTORY' },
+  { key: 'stock-balances', icon: <WalletOutlined />, labelKey: 'public.sidebar.stockBalances', section: 'stock-balances', category: 'INVENTORY' },
+  { key: 'stock-movements', icon: <SwapOutlined />, labelKey: 'public.sidebar.stockMovements', section: 'stock-movements', category: 'INVENTORY' },
+  { key: 'stock-transfer', icon: <SyncOutlined />, labelKey: 'public.sidebar.stockTransfer', section: 'stock-transfer', category: 'INVENTORY' },
+  { key: 'stock-count', icon: <CalculatorOutlined />, labelKey: 'public.sidebar.stockCount', section: 'stock-count', category: 'INVENTORY' },
+  { key: 'settings', icon: <SettingOutlined />, labelKey: 'public.sidebar.settings', section: 'settings', category: 'SETTINGS' },
 ];
 
 interface SidebarProps {
@@ -64,6 +75,7 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
     MAIN: true,
     ACCOUNTING: true,
     INVENTORY: true,
+    SETTINGS: true,
   });
 
   const groupedItems = navItems.reduce((acc, item) => {
@@ -75,7 +87,7 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
     return acc;
   }, {} as Record<string, NavItem[]>);
 
-  const categoryOrder = ['MAIN', 'ACCOUNTING', 'INVENTORY'];
+  const categoryOrder = ['MAIN', 'ACCOUNTING', 'INVENTORY', 'SETTINGS'];
   const orderedCategories = categoryOrder.filter(cat => groupedItems[cat]);
 
   const toggleCategory = (category: string) => {
