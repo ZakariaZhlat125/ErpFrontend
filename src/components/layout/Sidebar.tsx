@@ -71,6 +71,7 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
   const locale = useLocale();
   const params = useParams();
   const establishmentId = params?.establishmentId as string;
+  const [isHovered, setIsHovered] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({
     MAIN: true,
     ACCOUNTING: true,
@@ -107,19 +108,21 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
   return (
     <aside
       className={`h-screen flex flex-col transition-all duration-300 ${
-        collapsed ? 'w-20' : 'w-96'
+        collapsed && !isHovered ? 'w-16' : 'w-96'
       }`}
       style={{ background: 'var(--sidebar-bg)' }}
+      onMouseEnter={() => collapsed && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="p-6 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
+      <div className={`flex items-center justify-between gap-3 ${collapsed && !isHovered ? 'p-3 justify-center' : 'p-6'}`}>
+        <div className={`flex items-center gap-3 ${collapsed && !isHovered ? 'cursor-pointer' : ''}`} onClick={collapsed && !isHovered ? onToggle : undefined}>
           <div
-            className="w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl"
+            className={`rounded-lg flex items-center justify-center font-bold text-xl ${collapsed && !isHovered ? 'w-10 h-10' : 'w-12 h-12'}`}
             style={{ backgroundColor: 'var(--sidebar-logo-bg)', color: '#7c3aed' }}
           >
             ⊞
           </div>
-          {!collapsed && (
+          {!(collapsed && !isHovered) && (
             <div>
               <h1 className="font-bold text-white text-base">ERP Platform</h1>
               <p className="text-xs" style={{ color: 'var(--sidebar-text-secondary)' }}>
@@ -128,12 +131,21 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
             </div>
           )}
         </div>
+        {!(collapsed && !isHovered) && (
+          <button
+            onClick={onToggle}
+            className="p-2 rounded-lg hover:bg-white/10 transition-all"
+            style={{ color: 'var(--sidebar-text)' }}
+          >
+            <MenuFoldOutlined />
+          </button>
+        )}
       </div>
 
-      <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20">
+      <nav className={`flex-1 space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 ${collapsed && !isHovered ? 'px-2 py-4' : 'px-4 py-4'}`}>
         {orderedCategories.map((category) => (
           <div key={category}>
-            {category !== 'MAIN' && !collapsed && (
+            {category !== 'MAIN' && !(collapsed && !isHovered) && (
               <button
                 onClick={() => toggleCategory(category)}
                 className="w-full flex items-center justify-between px-4 py-2 rounded-lg transition-all hover:bg-white/10"
@@ -156,14 +168,14 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
                   <a
                     key={item.key}
                     href={getLocalizedPath(item.section)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg transition-all hover:bg-white/20 active:bg-white/30"
+                    className={`flex items-center gap-3 rounded-lg transition-all hover:bg-white/20 active:bg-white/30 ${collapsed && !isHovered ? 'justify-center px-2 py-3' : 'px-4 py-3'}`}
                     style={{
                       color: 'var(--sidebar-text)',
                       backgroundColor: item.key === 'dashboard' ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
                     }}
                   >
-                    <span className="text-lg flex-shrink-0">{item.icon}</span>
-                    {!collapsed && (
+                    <span className={`flex-shrink-0 ${collapsed && !isHovered ? 'text-xl' : 'text-lg'}`}>{item.icon}</span>
+                    {!(collapsed && !isHovered) && (
                       <span className="font-medium whitespace-nowrap text-sm">{t(item.labelKey)}</span>
                     )}
                   </a>
@@ -174,28 +186,36 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
         ))}
       </nav>
 
-      <div className="p-4 border-t border-white/10">
+      <div className={`border-t border-white/10 ${collapsed && !isHovered ? 'p-2' : 'p-4'}`}>
         <div
-          className="p-4 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-white/10 transition-all"
+          className={`rounded-lg cursor-pointer hover:bg-white/10 transition-all ${collapsed && !isHovered ? 'justify-center p-2' : 'p-4'}`}
           style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
         >
-          <div
-            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold"
-            style={{ backgroundColor: '#ec4899', color: 'white' }}
-          >
-            A
-          </div>
-          {!collapsed && (
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-white">Admin User</p>
-              <p className="text-xs" style={{ color: 'var(--sidebar-text-secondary)' }}>
-                admin@erp.com
-              </p>
+          <div className={`flex items-center gap-3 ${collapsed && !isHovered ? 'justify-center' : ''}`}>
+            <div className="relative">
+              <div
+                className={`rounded-full flex items-center justify-center flex-shrink-0 font-bold ${collapsed && !isHovered ? 'w-8 h-8 text-sm' : 'w-10 h-10'}`}
+                style={{ backgroundColor: '#ec4899', color: 'white' }}
+              >
+                A
+              </div>
+              <div
+                className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
+                style={{ backgroundColor: '#22c55e', borderColor: 'var(--sidebar-bg)' }}
+              />
             </div>
-          )}
-          {!collapsed && (
-            <DownOutlined className="text-xs" style={{ color: 'var(--sidebar-text-secondary)' }} />
-          )}
+            {!(collapsed && !isHovered) && (
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-white">Admin User</p>
+                <p className="text-xs" style={{ color: 'var(--sidebar-text-secondary)' }}>
+                  admin@example.com
+                </p>
+                <div className="mt-1 inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+                  Super Admin
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </aside>
