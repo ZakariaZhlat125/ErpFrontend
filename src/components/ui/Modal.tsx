@@ -43,6 +43,8 @@ export function Modal({
       closable={showCloseButton}
       centered
       className="custom-modal"
+      transitionName=""
+      maskTransitionName=""
       styles={{
         header: {
           backgroundColor: tokens.surface,
