@@ -57,7 +57,10 @@ export function TopBar() {
   const handleLanguageChange = (lang: string) => {
     const segments = pathname.split('/');
     segments[1] = lang;
-    router.push(segments.join('/'));
+    const newPath = segments.join('/');
+    
+    router.push(newPath);
+    router.refresh();
   };
 
   return (
