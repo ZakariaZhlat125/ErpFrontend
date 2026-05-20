@@ -29,5 +29,16 @@
     "projects": "Projects",
     "reports": "Reports",
     "settings": "Settings"
+  },
+  "delete": {
+    "title": "Delete Organization",
+    "message": "Are you sure you want to delete",
+    "description": "This action cannot be undone.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "error": {
+    "title": "Failed to Load Organizations",
+    "message": "Unable to load your organizations. Please check your connection and try again."
   }
 }

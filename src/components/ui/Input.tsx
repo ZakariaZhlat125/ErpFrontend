@@ -10,16 +10,23 @@ export interface InputProps extends Omit<AntInputProps, 'size'> {
   label?: string;
   errorText?: string;
   size?: 'sm' | 'md' | 'lg';
+  // Optional styling hooks for the wrapper/label/error
+  containerClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
 }
 
 export const Input = forwardRef<any, InputProps>(
   ({ 
-    className, 
-    error, 
-    label, 
-    errorText, 
+    className,
+    containerClassName,
+    labelClassName,
+    errorClassName,
+    error,
+    label,
+    errorText,
     size = 'md',
-    ...props 
+    ...props
   }, ref) => {
     const { tokens } = useTheme();
 
@@ -35,37 +42,72 @@ export const Input = forwardRef<any, InputProps>(
       lg: '52px',
     };
 
+    // Use Ant Design Password input when type is password to enable built-in visibility toggle support
+    const BaseInput: any = props?.type === 'password' ? (AntInput as any).Password : AntInput;
+
+    // Generate an id from provided id or name to link label and input
+    const inputId = (props as any)?.id ?? (props as any)?.name ?? undefined;
+    const errorId = inputId ? `${inputId}-error` : undefined;
+
     return (
-      <div className="flex flex-col gap-1.5">
+      <div className={cn('flex flex-col gap-1.5', containerClassName)}>
         {label && (
-          <label 
-            className="text-sm font-medium mb-0.5"
+          <label
+            className={cn('text-sm font-medium mb-0.5', labelClassName)}
             style={{ color: tokens.text }}
+            htmlFor={inputId}
           >
             {label}
           </label>
         )}
-        <AntInput
+        <BaseInput
           ref={ref}
           className={cn(
-            'neumorphic-flat',
+            'custom-input',
             className
           )}
           size={antdSize[size]}
           status={error ? 'error' : undefined}
           style={{
-            backgroundColor: tokens.surface,
+            backgroundColor: 'var(--surface)',
+            color: 'var(--text)',
             borderRadius: '8px',
-            border: 'none',
-            boxShadow: `4px 4px 8px ${tokens.shadowDark}, -4px -4px 8px ${tokens.shadowLight}`,
+            border: `1px solid ${error ? 'var(--danger)' : 'var(--border)'}`,
             height: heightStyles[size],
             padding: '10px 16px',
             fontSize: '14px',
+            '--ant-color-text-placeholder': 'var(--text-muted)',
           }}
+          
+          id={inputId}
+          aria-invalid={error || undefined}
+          aria-describedby={error && errorText && errorId ? errorId : undefined}
           {...props}
         />
+        <style jsx global>{`
+          .custom-input:hover {
+            border-color: var(--primary) !important;
+          }
+          .custom-input:focus,
+          .custom-input:focus-within {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px var(--focus-ring) !important;
+            outline: none !important;
+          }
+          .custom-input input {
+            background-color: transparent !important;
+            color: var(--text) !important;
+          }
+          .custom-input textarea {
+            background-color: transparent !important;
+            color: var(--text) !important;
+          }
+          .custom-input .ant-input-password-icon {
+            color: var(--text-secondary) !important;
+          }
+        `}</style>
         {error && errorText && (
-          <p className="text-xs mt-1" style={{ color: tokens.danger }}>
+          <p id={errorId} className={cn('text-xs mt-1', errorClassName)} style={{ color: tokens.danger }}>
             {errorText}
           </p>
         )}

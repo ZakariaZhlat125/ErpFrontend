@@ -75,6 +75,14 @@ const iconColors = {
   info: 'text-blue-500',
 };
 
+const iconBgColors = {
+  delete: 'bg-red-50 dark:bg-red-500/10',
+  warning: 'bg-amber-50 dark:bg-amber-500/10',
+  success: 'bg-emerald-50 dark:bg-emerald-500/10',
+  error: 'bg-red-50 dark:bg-red-500/10',
+  info: 'bg-blue-50 dark:bg-blue-500/10',
+};
+
 export function ConfirmModal({
   isOpen,
   onClose,
@@ -104,14 +112,16 @@ export function ConfirmModal({
     onClose();
   };
 
+  const iconBg = iconBgColors[type];
+
   const footer = (
-    <div className="flex justify-end gap-3">
+    <div className="flex w-full gap-3 px-2 pb-2">
       {showCancel && (
-        <Button variant="secondary" onClick={onClose}>
+        <Button variant="secondary" onClick={onClose} className="flex-1">
           {cancelText}
         </Button>
       )}
-      <Button variant={config.variant} onClick={handleConfirm}>
+      <Button variant={config.variant} onClick={handleConfirm} className="flex-1">
         {defaultConfirmText}
       </Button>
     </div>
@@ -126,27 +136,29 @@ export function ConfirmModal({
       size={size}
       showCloseButton={type !== 'success' && type !== 'error'}
     >
-      <div className="flex flex-col items-center text-center">
-        <div className={`mb-4 text-5xl ${iconColor}`}>
-          {defaultIcon}
+      <div className="flex flex-col items-center text-center px-6 pt-8 pb-0">
+        <div className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full ${iconBg}`}>
+          <span className={`text-4xl ${iconColor}`}>
+            {defaultIcon}
+          </span>
         </div>
-        
-        <h3 className="mb-3 text-2xl font-bold text-[var(--text)]">
+
+        <h3 className="mb-2 text-xl font-bold text-text">
           {defaultTitle}
         </h3>
-        
-        <p className="mb-2 text-base text-[var(--text-secondary)]">
+
+        <p className="mb-1 max-w-sm text-sm leading-relaxed text-text-secondary">
           {defaultMessage}
         </p>
-        
+
         {description && (
-          <p className="text-sm text-[var(--text-muted)]">
+          <p className="mt-2 max-w-sm rounded-lg bg-surface px-4 py-2 text-xs leading-relaxed text-text-secondary">
             {description}
           </p>
         )}
-        
+
         {customContent && (
-          <div className="mt-4 w-full">
+          <div className="mt-6 w-full">
             {customContent}
           </div>
         )}

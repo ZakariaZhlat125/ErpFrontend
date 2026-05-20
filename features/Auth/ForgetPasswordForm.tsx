@@ -2,23 +2,33 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
 import { useTheme } from '@/lib/theme/use-theme';
-import { MailOutlined, KeyOutlined } from '@ant-design/icons';
+import { KeyOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { useValidation } from '@/lib/validation';
+import { authApi } from '@/lib/api/auth';
+import { mockAuthApi } from '@/lib/api/mockAuth';
 
-const schema = z.object({
-  email: z.string().email('Email غير صحيح'),
-});
-
-type FormValues = z.infer<typeof schema>;
+const USE_MOCK_AUTH = process.env.NEXT_PUBLIC_USE_MOCK_AUTH === 'true' || !process.env.NEXT_PUBLIC_API_URL;
 
 export function ForgetPasswordForm() {
   const { tokens, toggleTheme, mode } = useTheme();
+  const t = useTranslations('auth.forgetPassword');
+  const { emailSchema } = useValidation();
+  const [error, setError] = React.useState<string | null>(null);
+  const [success, setSuccess] = React.useState<string | null>(null);
+
+  const schema = z.object({
+    email: emailSchema(),
+  });
+
+  type FormValues = z.infer<typeof schema>;
   const {
     register,
     handleSubmit,
@@ -29,7 +39,17 @@ export function ForgetPasswordForm() {
   });
 
   const onSubmit = async (values: FormValues) => {
-    console.log(values);
+    setError(null);
+    setSuccess(null);
+    
+    try {
+      const api = USE_MOCK_AUTH ? mockAuthApi : authApi;
+      const response = await api.forgotPassword(values.email);
+      setSuccess(response.message || 'Password reset email sent. Please check your inbox.');
+    } catch (err: any) {
+      setError(err.message || 'Failed to send reset email. Please try again.');
+      console.error('Forgot password error:', err);
+    }
   };
 
   return (
@@ -43,31 +63,42 @@ export function ForgetPasswordForm() {
             <KeyOutlined className="text-4xl" />
           </div>
           <h1 className="text-3xl font-bold" style={{ color: tokens.text }}>
-            Forgot Password?
+            {t('title')}
           </h1>
           <p className="text-sm" style={{ color: tokens.textSecondary }}>
-            Enter your email to receive a reset link
+            {t('subtitle')}
           </p>
         </div>
 
         <Card>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {error && (
+              <div className="rounded-lg bg-red-50 border border-red-200 p-3">
+                <p className="text-sm text-red-800">{error}</p>
+              </div>
+            )}
+            
+            {success && (
+              <div className="rounded-lg bg-green-50 border border-green-200 p-3">
+                <p className="text-sm text-green-800">{success}</p>
+              </div>
+            )}
+            
             <Input
               {...register('email')}
               type="email"
-              label="Email"
-              placeholder="name@company.com"
+              label={t('email')}
+              placeholder={t('emailPlaceholder')}
               error={!!errors.email}
               errorText={errors.email?.message}
             />
 
             <Button 
-              type="submit" 
               variant="primary" 
               className="w-full"
               isLoading={isSubmitting}
             >
-              Send Reset Link
+              {t('submit')}
             </Button>
           </form>
         </Card>
@@ -78,7 +109,7 @@ export function ForgetPasswordForm() {
             className="text-sm font-medium hover:underline flex items-center justify-center gap-1"
             style={{ color: tokens.primary }}
           >
-            ← Back to Sign In
+            {t('backToLogin')}
           </Link>
         </div>
 

@@ -2,27 +2,31 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
 import { useTheme } from '@/lib/theme/use-theme';
-import { LockOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined } from '@ant-design/icons';
 import Link from 'next/link';
-
-const schema = z.object({
-  password: z.string().min(8, 'كلمة المرور لازم 8 أحرف على الأقل'),
-  confirmPassword: z.string().min(8, 'كلمة المرور لازم 8 أحرف على الأقل'),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'كلمات المرور غير متطابقة',
-  path: ['confirmPassword'],
-});
-
-type FormValues = z.infer<typeof schema>;
+import { useTranslations } from 'next-intl';
+import { useValidation } from '@/lib/validation';
 
 export function ResetPasswordForm() {
   const { tokens, toggleTheme, mode } = useTheme();
+  const t = useTranslations('auth.resetPassword');
+  const { passwordSchema } = useValidation();
+
+  const schema = z.object({
+    password: passwordSchema(8),
+    confirmPassword: passwordSchema(8),
+  }).refine((data) => data.password === data.confirmPassword, {
+    message: 'validation.match.password',
+    path: ['confirmPassword'],
+  });
+
+  type FormValues = z.infer<typeof schema>;
   const {
     register,
     handleSubmit,
@@ -47,10 +51,10 @@ export function ResetPasswordForm() {
             <CheckCircleOutlined className="text-4xl" />
           </div>
           <h1 className="text-3xl font-bold" style={{ color: tokens.text }}>
-            Reset Password
+            {t('title')}
           </h1>
           <p className="text-sm" style={{ color: tokens.textSecondary }}>
-            Enter your new password below
+            {t('subtitle')}
           </p>
         </div>
 
@@ -59,8 +63,8 @@ export function ResetPasswordForm() {
             <Input
               {...register('password')}
               type="password"
-              label="New Password"
-              placeholder="••••••••"
+              label={t('password')}
+              placeholder={t('passwordPlaceholder')}
               error={!!errors.password}
               errorText={errors.password?.message}
             />
@@ -68,19 +72,18 @@ export function ResetPasswordForm() {
             <Input
               {...register('confirmPassword')}
               type="password"
-              label="Confirm New Password"
-              placeholder="••••••••"
+              label={t('confirmPassword')}
+              placeholder={t('confirmPasswordPlaceholder')}
               error={!!errors.confirmPassword}
               errorText={errors.confirmPassword?.message}
             />
 
             <Button 
-              type="submit" 
               variant="success" 
               className="w-full"
               isLoading={isSubmitting}
             >
-              Reset Password
+              {t('submit')}
             </Button>
           </form>
         </Card>
@@ -91,7 +94,7 @@ export function ResetPasswordForm() {
             className="text-sm font-medium hover:underline flex items-center justify-center gap-1"
             style={{ color: tokens.primary }}
           >
-            ← Back to Sign In
+            {t('backToLogin')}
           </Link>
         </div>
 

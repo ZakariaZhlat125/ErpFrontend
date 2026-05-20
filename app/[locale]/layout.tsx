@@ -1,6 +1,6 @@
 "use client";
 import { AppShell } from '@/components/layout/AppShell';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 export default function Layout({
   children,
@@ -8,14 +8,18 @@ export default function Layout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const {locale} = useParams();
   console.log("pathname",pathname);
+  console.log("locale",locale);
   
   // Paths that should not show sidebar and top bar
-  const noLayoutPaths = ['/my-establishment', '/login', '/register', '/forget-password', '/reset-password', '/landing'];
-  const shouldShowLayout = !noLayoutPaths.some(path => pathname?.endsWith(path));
+  const noLayoutPaths = [`/${locale}`, '/my-establishment', '/login', '/register', '/forget-password', '/reset-password', '/landing'];
+  const noLayoutPathsTopBar = [`/${locale}`, '/login', '/register', '/forget-password', '/reset-password', '/landing'];
+  const shouldShowSide = !noLayoutPaths.some(path => pathname?.endsWith(path));
+  const shouldShowTop = !noLayoutPathsTopBar.some(path => pathname?.endsWith(path));
 
   return (
-    <AppShell showSidebar={shouldShowLayout} showTopBar={shouldShowLayout}>
+    <AppShell showSidebar={shouldShowSide} showTopBar={shouldShowTop}>
       {children}
     </AppShell>
   );

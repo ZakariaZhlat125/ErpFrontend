@@ -21,6 +21,13 @@
     "stockMovements": "Stock Movements",
     "stockTransfer": "Stock Transfer",
     "stockCount": "Stock Count",
+    "employees": "Employees",
+    "attendance": "Attendance",
+    "leaves": "Leave Requests",
+    "payroll": "Payroll",
+    "projects": "Projects",
+    "tasks": "Tasks",
+    "timeEntries": "Time Tracking",
     "settings": "Settings"
   },
   "sections": {

@@ -21,7 +21,7 @@ export function AppShell({ children, showSidebar = true, showTopBar = true }: Ap
       {showSidebar && <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />}
       <div className="flex-1 flex flex-col overflow-hidden" style={{ marginLeft: showSidebar ? (sidebarCollapsed ? '64px' : '80px') : '0', transition: 'margin-left 0.3s ease' }}>
         {showTopBar && <TopBar />}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className={`flex-1 ${showSidebar ? 'p-6' : 'p-0'} overflow-y-auto`}>
           {children}
         </main>
       </div>

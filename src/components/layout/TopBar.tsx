@@ -3,6 +3,7 @@
 import { useTheme } from '@/lib/theme/use-theme';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
+import { useAuth } from '@/lib/hooks/useAuth';
 import { 
   SearchOutlined, 
   BellOutlined, 
@@ -20,6 +21,7 @@ export function TopBar() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const { logout, user } = useAuth();
 
   const userMenuItems = [
     {
@@ -58,9 +60,15 @@ export function TopBar() {
     const segments = pathname.split('/');
     segments[1] = lang;
     const newPath = segments.join('/');
-    
+
     router.push(newPath);
     router.refresh();
+  };
+
+  const handleUserMenuClick = (key: string) => {
+    if (key === 'logout') {
+      logout();
+    }
   };
 
   return (
@@ -115,15 +123,15 @@ export function TopBar() {
           </button>
         </Dropdown>
 
-        <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+        <Dropdown menu={{ items: userMenuItems, onClick: (e) => handleUserMenuClick(e.key) }} placement="bottomRight">
           <button
             className="flex items-center gap-3 transition-all hover:opacity-80"
             style={{ color: tokens.text }}
           >
             <div className="text-right">
-              <p className="text-sm font-medium">Admin User</p>
+              <p className="text-sm font-medium">{user?.name || user?.email || 'User'}</p>
               <p className="text-xs" style={{ color: tokens.textSecondary }}>
-                Super Administrator
+                {user?.roles?.[0] || 'User'}
               </p>
             </div>
           </button>

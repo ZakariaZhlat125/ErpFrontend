@@ -1,0 +1,49 @@
+{
+  "title": "إدارة الخطط",
+  "description": "إدارة خطط الاشتراك والأسعار",
+  "addPlan": "إضافة خطة",
+  "editPlan": "تعديل الخطة",
+  "deletePlan": "حذف الخطة",
+  "stats": {
+    "totalPlans": "إجمالي الخطط",
+    "activePlans": "الخطط النشطة",
+    "popularPlans": "الخطط الشائعة",
+    "inactivePlans": "الخطط غير النشطة"
+  },
+  "table": {
+    "plan": "الخطة",
+    "price": "السعر",
+    "billing": "الفوترة",
+    "users": "المستخدمين",
+    "branches": "الفروع",
+    "status": "الحالة",
+    "popular": "شائع",
+    "actions": "الإجراءات"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "billingCycle": {
+    "monthly": "شهري",
+    "yearly": "سنوي"
+  },
+  "form": {
+    "name": "اسم الخطة",
+    "description": "الوصف",
+    "price": "السعر",
+    "billingCycle": "دورة الفوترة",
+    "maxUsers": "أقصى عدد مستخدمين",
+    "maxBranches": "أقصى عدد فروع",
+    "features": "المميزات",
+    "isActive": "نشط",
+    "isPopular": "شائع",
+    "sortOrder": "ترتيب"
+  },
+  "messages": {
+    "createSuccess": "تم إنشاء الخطة بنجاح",
+    "updateSuccess": "تم تحديث الخطة بنجاح",
+    "deleteSuccess": "تم حذف الخطة بنجاح",
+    "deleteConfirm": "هل أنت متأكد من حذف هذه الخطة؟"
+  }
+}

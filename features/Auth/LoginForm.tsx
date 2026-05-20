@@ -2,123 +2,141 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useTranslations } from 'next-intl';
+import { useValidation } from '@/lib/validation';
+import { useAuth } from '@/lib/hooks/useAuth';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Card } from '@/components/ui/Card';
-import { useTheme } from '@/lib/theme/use-theme';
-import { UserOutlined, LockOutlined, LoginOutlined } from '@ant-design/icons';
-import Link from 'next/link';
-
-const schema = z.object({
-  email: z.string().email('Email غير صحيح'),
-  password: z.string().min(8, 'كلمة المرور لازم 8 أحرف على الأقل'),
-});
-
-type FormValues = z.infer<typeof schema>;
+import { RHFInput } from '@/components/forms/RHFInput';
+import { FormContainer } from '@/components/forms/FormContainer';
+import { AuthLayout } from '@/features/Auth/AuthLayout';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import { ArrowRightOutlined, StarOutlined } from '@ant-design/icons';
 
 export function LoginForm() {
-  const { tokens, toggleTheme, mode } = useTheme();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormValues>({
+  const t = useTranslations('auth.login');
+  const { emailSchema, passwordSchema } = useValidation();
+  const { login } = useAuth();
+  const locale = useLocale();
+
+  const schema = z.object({
+    email: emailSchema(),
+    password: passwordSchema(8),
+  });
+
+  type FormValues = z.infer<typeof schema>;
+  const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: 'onBlur',
   });
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = form;
+
+  const [error, setError] = React.useState<string | null>(null);
+  const [success, setSuccess] = React.useState<string | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const onSubmit = async (values: FormValues) => {
-    console.log(values);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const result = await login({
+        email: values.email as string,
+        password: values.password,
+      });
+
+      if (result.success) {
+        setSuccess(result.message || 'Login successful! Redirecting...');
+        console.log('Login successful:', {
+          user: result.data.user,
+          accessToken: result.data.accessToken,
+          expiresIn: result.data.expiresIn
+        });
+
+        // Redirect after short delay to show success message
+        setTimeout(() => {
+          const redirectUrl = searchParams?.get('redirect');
+          if (redirectUrl) {
+            router.push(redirectUrl);
+          } else {
+            router.push(`/${locale}`);
+          }
+          router.refresh();
+        }, 500);
+      }
+    } catch (err: any) {
+      console.error('Login error:', err);
+      const errorMessage = err?.message || 'Invalid email or password';
+      setError(errorMessage);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center space-y-2">
-          <div 
-            className="neumorphic-flat w-20 h-20 rounded-full flex items-center justify-center mx-auto"
-            style={{ color: tokens.primary }}
-          >
-            <LoginOutlined className="text-4xl" />
-          </div>
-          <h1 className="text-3xl font-bold" style={{ color: tokens.text }}>
-            Welcome Back
-          </h1>
-          <p className="text-sm" style={{ color: tokens.textSecondary }}>
-            Sign in to your ERP dashboard
-          </p>
-        </div>
-
-        <Card>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <Input
-              {...register('email')}
-              type="email"
-              label="Email"
-              placeholder="name@company.com"
-              error={!!errors.email}
-              errorText={errors.email?.message}
-            />
-
-            <Input
-              {...register('password')}
-              type="password"
-              label="Password"
-              placeholder="••••••••"
-              error={!!errors.password}
-              errorText={errors.password?.message}
-            />
-
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2 text-sm" style={{ color: tokens.text }}>
-                <input type="checkbox" className="neumorphic-inset w-4 h-4 rounded" />
-                Remember me
-              </label>
-              <Link 
-                href="/forget-password"
-                className="text-sm hover:underline"
-                style={{ color: tokens.primary }}
-              >
-                Forgot password?
-              </Link>
-            </div>
-
-            <Button 
-              type="submit" 
-              variant="primary" 
-              className="w-full"
-              isLoading={isSubmitting}
+    <AuthLayout>
+      <FormContainer
+        title="Welcome Back"
+        subtitle="Sign in to continue to your dashboard"
+        error={error}
+        success={success}
+        onSubmit={handleSubmit(onSubmit)}
+        footer={(
+          <p className="text-center text-sm text-purple-200">
+            Don&apos;t have an account?{' '}
+            <a
+              href={`/${locale}/register`}
+              className="font-medium text-white hover:underline"
+              style={{ color: '#ec4899' }}
             >
-              Sign In
-            </Button>
-          </form>
-        </Card>
-
-        <div className="text-center space-y-2">
-          <p className="text-sm" style={{ color: tokens.textSecondary }}>
-            Don't have an account?
+              Sign up for free
+            </a>
           </p>
-          <Link 
-            href="/register"
-            className="text-sm font-medium hover:underline"
-            style={{ color: tokens.primary }}
+        )}
+      >
+        <RHFInput
+          methods={form}
+          name="email"
+          type="email"
+          label="Email Address"
+          placeholder="you@example.com"
+        />
+
+        <RHFInput
+          methods={form}
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="••••••••"
+        />
+
+        <div className="flex items-center justify-between">
+          <label className="flex items-center gap-2 text-xs text-purple-200 cursor-pointer">
+            <input 
+              type="checkbox" 
+              className="w-4 h-4 rounded border-purple-400/30 bg-purple-900/50 text-pink-500 focus:ring-pink-500/20"
+            />
+            Remember me
+          </label>
+          <a
+            href={`/${locale}/forget-password`}
+            className="text-xs text-purple-300 hover:text-white transition-colors"
           >
-            Create account
-          </Link>
+            Forgot password?
+          </a>
         </div>
 
-        <div className="text-center">
-          <Button 
-            variant="ghost" 
-            size="sm"
-            onClick={toggleTheme}
-          >
-            Toggle {mode === 'light' ? 'Dark' : 'Light'} Mode
-          </Button>
-        </div>
-      </div>
-    </div>
+        <Button
+          variant="gradient"
+          htmlType='submit'
+          isLoading={isSubmitting}
+          className="w-full flex items-center justify-center gap-2"
+        >
+          Sign In
+          <ArrowRightOutlined className="text-base" />
+        </Button>
+      </FormContainer>
+    </AuthLayout>
   );
 }

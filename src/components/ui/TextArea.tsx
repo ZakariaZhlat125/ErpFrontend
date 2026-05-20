@@ -45,22 +45,35 @@ export const TextArea = forwardRef<any, TextAreaProps>(
         <AntTextArea
           ref={ref}
           className={cn(
-            'neumorphic-flat',
+            'custom-textarea',
             className
           )}
           status={error ? 'error' : undefined}
           autoSize={{ minRows: minRowsStyles[size], maxRows: 8 }}
           style={{
-            backgroundColor: tokens.surface,
+            backgroundColor: 'var(--surface)',
+            color: 'var(--text)',
             borderRadius: '8px',
-            border: 'none',
-            boxShadow: `4px 4px 8px ${tokens.shadowDark}, -4px -4px 8px ${tokens.shadowLight}`,
+            border: `1px solid ${error ? 'var(--danger)' : 'var(--border)'}`,
             padding: '10px 16px',
             fontSize: '14px',
             resize: 'vertical',
           }}
           {...props}
         />
+        <style jsx global>{`
+          .custom-textarea:hover {
+            border-color: var(--primary) !important;
+          }
+          .custom-textarea:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px var(--focus-ring) !important;
+            outline: none !important;
+          }
+          .custom-textarea::placeholder {
+            color: var(--text-muted) !important;
+          }
+        `}</style>
         {error && errorText && (
           <p className="text-xs mt-1" style={{ color: tokens.danger }}>
             {errorText}

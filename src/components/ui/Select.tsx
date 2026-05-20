@@ -86,18 +86,56 @@ export const Select = forwardRef<any, SelectProps>(
         )}
         <style jsx global>{`
           .custom-select .ant-select-selector {
-            background-color: ${tokens.surface} !important;
+            background-color: var(--surface) !important;
+            color: var(--text) !important;
             border-radius: 8px !important;
-            border: none !important;
-            box-shadow: 4px 4px 8px ${tokens.shadowDark}, -4px -4px 8px ${tokens.shadowLight} !important;
+            border: 1px solid var(--border) !important;
             height: ${heightStyles[size]} !important;
             padding: 10px 16px !important;
             font-size: 14px !important;
           }
-          .custom-select .ant-select-selection-item,
+          .custom-select:hover .ant-select-selector {
+            border-color: var(--primary) !important;
+          }
+          .custom-select.ant-select-focused .ant-select-selector {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px var(--focus-ring) !important;
+          }
+          .custom-select .ant-select-selection-item {
+            line-height: ${heightStyles[size]} !important;
+            padding: 0 !important;
+            color: var(--text) !important;
+            font-weight: 500 !important;
+          }
           .custom-select .ant-select-selection-placeholder {
             line-height: ${heightStyles[size]} !important;
             padding: 0 !important;
+            color: var(--text-muted) !important;
+            opacity: 0.6 !important;
+          }
+          .custom-select .ant-select-arrow {
+            color: var(--text-secondary) !important;
+          }
+          .custom-select-dropdown {
+            background-color: var(--surface) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+          }
+          .custom-select-dropdown .ant-select-item {
+            color: var(--text) !important;
+            padding: 8px 12px !important;
+          }
+          .custom-select-dropdown .ant-select-item-option-selected {
+            background-color: var(--primary-soft) !important;
+            color: var(--primary) !important;
+            font-weight: 600 !important;
+          }
+          .custom-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-selected) {
+            background-color: var(--surface-hover) !important;
+          }
+          .custom-select-dropdown .ant-select-item-option:hover {
+            background-color: var(--surface-hover) !important;
           }
         `}</style>
       </div>

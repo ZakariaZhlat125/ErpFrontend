@@ -14,14 +14,33 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     const { tokens } = useTheme();
 
     return (
-      <AntCard
-        ref={ref}
-        className={className}
-        style={{ backgroundColor: tokens.surface }}
-        {...props}
-      >
-        {children}
-      </AntCard>
+      <>
+        <AntCard
+          ref={ref}
+          className={cn('custom-card', className)}
+          style={{ 
+            backgroundColor: 'var(--surface)',
+            borderColor: 'var(--border)',
+          }}
+          {...props}
+        >
+          {children}
+        </AntCard>
+        <style jsx global>{`
+          .custom-card {
+            border-radius: 12px !important;
+            border: 1px solid var(--border) !important;
+          }
+          .custom-card .ant-card-body {
+            color: var(--text) !important;
+          }
+          .custom-card .ant-card-head {
+            background-color: var(--surface) !important;
+            border-bottom-color: var(--border) !important;
+            color: var(--text) !important;
+          }
+        `}</style>
+      </>
     );
   }
 );

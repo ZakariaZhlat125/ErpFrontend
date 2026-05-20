@@ -13,6 +13,7 @@ export { Tag } from './Tag';
 export { Tooltip } from './Tooltip';
 export { Alert } from './Alert';
 export { ConfirmModal } from './ConfirmModal';
+export { StepIndicator } from './StepIndicator';
 
 export type { ButtonProps } from './Button';
 export type { InputProps } from './Input';
