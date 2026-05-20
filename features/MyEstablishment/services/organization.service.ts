@@ -58,7 +58,7 @@ export const organizationApi = {
     await apiClient.delete(`/organizations/${id}`);
   },
 
-  async patch(id: number, data: Partial<UpdateOrganizationInput>): Promise<Organization> {Q
+  async patch(id: number, data: Partial<UpdateOrganizationInput>): Promise<Organization> {
     const response = await apiClient.patch<ApiResponse<Organization>>(`/organizations/${id}`, data);
     return response.data.data;
   },
