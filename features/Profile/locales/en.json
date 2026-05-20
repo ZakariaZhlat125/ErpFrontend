@@ -1,0 +1,103 @@
+{
+  "title": "Profile Settings",
+  "description": "Manage your personal information and account details",
+  "tabs": {
+    "personal": "Personal Info",
+    "employment": "Employment",
+    "documents": "Documents",
+    "account": "Account"
+  },
+  "personal": {
+    "title": "Personal Information",
+    "avatar": "Profile Photo",
+    "changePhoto": "Change Photo",
+    "removePhoto": "Remove Photo",
+    "form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter last name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+1234567890",
+      "birthDate": "Date of Birth",
+      "gender": "Gender",
+      "genderPlaceholder": "Select gender",
+      "nationality": "Nationality",
+      "nationalityPlaceholder": "Select nationality",
+      "address": "Home Address",
+      "addressPlaceholder": "Enter your home address",
+      "emergencyContact": "Emergency Contact",
+      "emergencyName": "Contact Name",
+      "emergencyPhone": "Contact Phone"
+    },
+    "save": "Save Changes"
+  },
+  "employment": {
+    "title": "Employment Information",
+    "readOnly": "This information is managed by HR",
+    "employeeId": "Employee ID",
+    "department": "Department",
+    "position": "Position",
+    "manager": "Manager",
+    "hireDate": "Hire Date",
+    "employmentType": "Employment Type",
+    "workLocation": "Work Location",
+    "salary": "Salary",
+    "benefits": "Benefits"
+  },
+  "documents": {
+    "title": "Documents",
+    "upload": "Upload Document",
+    "dragDrop": "Drag and drop files here",
+    "or": "or",
+    "browse": "Browse files",
+    "types": {
+      "id": "ID Document",
+      "passport": "Passport",
+      "visa": "Visa",
+      "contract": "Employment Contract",
+      "certificate": "Certificate",
+      "other": "Other"
+    },
+    "table": {
+      "name": "Document Name",
+      "type": "Type",
+      "uploaded": "Uploaded Date",
+      "size": "Size",
+      "actions": "Actions"
+    },
+    "deleteConfirm": "Are you sure you want to delete this document?"
+  },
+  "account": {
+    "title": "Account Settings",
+    "username": "Username",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "twoFactor": "Two-Factor Authentication",
+    "twoFactorStatus": "Status",
+    "twoFactorEnabled": "Enabled",
+    "twoFactorDisabled": "Disabled",
+    "deactivate": "Deactivate Account",
+    "deactivateWarning": "This action cannot be undone. All your data will be permanently deleted."
+  },
+  "messages": {
+    "updateSuccess": "Profile updated successfully",
+    "photoUpdated": "Profile photo updated",
+    "photoRemoved": "Profile photo removed",
+    "passwordChanged": "Password changed successfully",
+    "documentUploaded": "Document uploaded successfully",
+    "documentDeleted": "Document deleted",
+    "error": "An error occurred"
+  },
+  "validation": {
+    "required": "This field is required",
+    "emailInvalid": "Invalid email address",
+    "phoneInvalid": "Invalid phone number",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordMatch": "Passwords do not match"
+  }
+}

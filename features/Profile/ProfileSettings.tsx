@@ -13,19 +13,21 @@ import {
   EditOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
+import { useTranslations } from 'next-intl';
 
 export function ProfileSettings() {
   const { tokens } = useTheme();
+  const t = useTranslations('profile');
 
   return (
     <div className="space-y-6 max-w-4xl">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: tokens.text }}>
-            Profile Settings
+            {t('title')}
           </h1>
           <p className="text-sm" style={{ color: tokens.textSecondary }}>
-            Manage your account information
+            {t('description')}
           </p>
         </div>
       </div>
@@ -48,50 +50,50 @@ export function ProfileSettings() {
               </p>
             </div>
             <Button variant="secondary" className="w-full">
-              <EditOutlined /> Change Avatar
+              <EditOutlined /> {t('personal.changePhoto')}
             </Button>
           </div>
         </Card>
 
         <Card className="lg:col-span-2">
           <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-            Personal Information
+            {t('personal.title')}
           </h2>
           <form className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="First Name"
-                placeholder="John"
+                label={t('personal.form.firstName')}
+                placeholder={t('personal.form.firstNamePlaceholder')}
               />
               <Input
-                label="Last Name"
-                placeholder="Doe"
+                label={t('personal.form.lastName')}
+                placeholder={t('personal.form.lastNamePlaceholder')}
               />
             </div>
 
             <Input
-              label="Email"
-              placeholder="john.doe@company.com"
+              label={t('personal.form.email')}
+              placeholder={t('personal.form.emailPlaceholder')}
               type="email"
             />
 
             <Input
-              label="Phone"
-              placeholder="+1 234 567 890"
+              label={t('personal.form.phone')}
+              placeholder={t('personal.form.phonePlaceholder')}
               type="tel"
             />
 
             <Input
-              label="Address"
-              placeholder="123 Main St, City, Country"
+              label={t('personal.form.address')}
+              placeholder={t('personal.form.addressPlaceholder')}
             />
 
             <div className="flex justify-end gap-3 pt-4">
               <Button variant="ghost">
-                Cancel
+                {t('form.cancel')}
               </Button>
               <Button variant="primary">
-                <SaveOutlined /> Save Changes
+                <SaveOutlined /> {t('personal.save')}
               </Button>
             </div>
           </form>
@@ -100,34 +102,34 @@ export function ProfileSettings() {
 
       <Card>
         <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-          Security Settings
+          {t('security.title')}
         </h2>
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 neumorphic-flat rounded-lg">
             <div>
               <h3 className="font-medium" style={{ color: tokens.text }}>
-                Change Password
+                {t('security.changePassword')}
               </h3>
               <p className="text-sm" style={{ color: tokens.textSecondary }}>
-                Update your password regularly
+                {t('security.twoFactorDescription')}
               </p>
             </div>
             <Button variant="secondary">
-              Change
+              {t('form.change')}
             </Button>
           </div>
 
           <div className="flex items-center justify-between p-4 neumorphic-flat rounded-lg">
             <div>
               <h3 className="font-medium" style={{ color: tokens.text }}>
-                Two-Factor Authentication
+                {t('security.twoFactor')}
               </h3>
               <p className="text-sm" style={{ color: tokens.textSecondary }}>
-                Add an extra layer of security
+                {t('security.twoFactorDescription')}
               </p>
             </div>
             <Button variant="secondary">
-              Enable
+              {t('security.enable2FA')}
             </Button>
           </div>
         </div>

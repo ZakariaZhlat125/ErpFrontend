@@ -1,24 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, type UseFormReturn } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useCreateBranch, useUpdateBranch } from './branches';
 import { DEFAULT_FORM_VALUES } from '../constants/branch.constants';
 import type { Branch, CreateBranchInput, UpdateBranchInput } from '../types/branch.types';
-
-/**
- * Zod schema for branch form validation
- */
-const branchSchema = z.object({
-  name: z.string().min(1, 'Branch name is required').max(255, 'Branch name must be less than 255 characters'),
-  code: z.string().min(1, 'Branch code is required').max(50, 'Branch code must be less than 50 characters'),
-  address: z.string().optional(),
-  phone: z.string().max(20, 'Phone must be less than 20 characters').optional(),
-  email: z.string().email('Invalid email address').optional().or(z.literal('')),
-  is_active: z.boolean().optional(),
-});
-
-export type BranchFormData = z.infer<typeof branchSchema>;
+import { branchSchema, type BranchFormData } from '../schemas/branches.schema';
 
 interface UseBranchFormProps {
   mode: 'create' | 'edit';
@@ -28,17 +14,7 @@ interface UseBranchFormProps {
 }
 
 interface UseBranchFormReturn {
-  form: {
-    register: any;
-    handleSubmit: any;
-    formState: {
-      errors: any;
-      isDirty: boolean;
-    };
-    reset: () => void;
-    setValue: any;
-    watch: any;
-  };
+  form: UseFormReturn<BranchFormData>;
   error: string | null;
   success: string | null;
   isPending: boolean;
@@ -63,9 +39,9 @@ export function useBranchForm({
   const updateMutation = useUpdateBranch();
 
   const form = useForm<BranchFormData>({
-    resolver: zodResolver(branchSchema),
+    resolver: zodResolver(branchSchema) as any,
     defaultValues: DEFAULT_FORM_VALUES,
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   // Populate form in edit mode

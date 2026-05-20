@@ -1,0 +1,87 @@
+{
+  "title": "Parties Management",
+  "description": "Manage customers, suppliers, agents, and contractors",
+  "addParty": "Add Party",
+  "editParty": "Edit Party",
+  "deleteParty": "Delete Party",
+  "stats": {
+    "totalParties": "Total Parties",
+    "customers": "Customers",
+    "suppliers": "Suppliers",
+    "agents": "Agents",
+    "contractors": "Contractors"
+  },
+  "table": {
+    "code": "Code",
+    "displayName": "Name",
+    "type": "Type",
+    "roles": "Roles",
+    "legalName": "Legal Name",
+    "taxNumber": "Tax Number",
+    "currency": "Currency",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "types": {
+    "individual": "Individual",
+    "company": "Company"
+  },
+  "roles": {
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "agent": "Agent",
+    "contractor": "Contractor"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "form": {
+    "code": "Party Code",
+    "codePlaceholder": "Enter unique code (e.g., CUST001)",
+    "displayName": "Display Name",
+    "displayNamePlaceholder": "Enter display name",
+    "type": "Type",
+    "typePlaceholder": "Select type",
+    "legalName": "Legal Name",
+    "legalNamePlaceholder": "Enter legal name",
+    "taxNumber": "Tax Number",
+    "taxNumberPlaceholder": "Enter tax number",
+    "currency": "Currency",
+    "currencyPlaceholder": "Select currency",
+    "roles": "Roles",
+    "rolesPlaceholder": "Select roles",
+    "notes": "Notes",
+    "notesPlaceholder": "Enter any additional notes...",
+    "isActive": "Active"
+  },
+  "modalTitle": "Add Party",
+  "editModalTitle": "Edit Party",
+  "submit": "Create Party",
+  "save": "Save Changes",
+  "cancel": "Cancel",
+  "emptyMessage": "No parties found",
+  "createFirstParty": "Create your first party to get started",
+  "delete": {
+    "title": "Delete Party",
+    "message": "Are you sure you want to delete",
+    "description": "This action cannot be undone. All associated data will be affected.",
+    "confirm": "Delete"
+  },
+  "messages": {
+    "createSuccess": "Party created successfully",
+    "updateSuccess": "Party updated successfully",
+    "deleteSuccess": "Party deleted successfully",
+    "deleteConfirm": "Are you sure you want to delete this party?"
+  },
+  "validation": {
+    "required": "This field is required",
+    "codeRequired": "Party code is required",
+    "codeMax": "Code must be less than 50 characters",
+    "displayNameRequired": "Display name is required",
+    "displayNameMax": "Name must be less than 255 characters",
+    "legalNameMax": "Legal name must be less than 255 characters",
+    "taxNumberMax": "Tax number must be less than 50 characters",
+    "typeRequired": "Type is required"
+  }
+}

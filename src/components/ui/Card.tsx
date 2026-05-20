@@ -17,7 +17,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <>
         <AntCard
           ref={ref}
-          className={cn('custom-card', className)}
+          className={cn('custom-card w-full', className)}
           style={{ 
             backgroundColor: 'var(--surface)',
             borderColor: 'var(--border)',
@@ -33,11 +33,25 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           }
           .custom-card .ant-card-body {
             color: var(--text) !important;
+            padding: 16px !important;
+          }
+          @media (min-width: 640px) {
+            .custom-card .ant-card-body {
+              padding: 24px !important;
+            }
           }
           .custom-card .ant-card-head {
             background-color: var(--surface) !important;
             border-bottom-color: var(--border) !important;
             color: var(--text) !important;
+            padding: 0 16px !important;
+            min-height: 48px !important;
+          }
+          @media (min-width: 640px) {
+            .custom-card .ant-card-head {
+              padding: 0 24px !important;
+              min-height: 56px !important;
+            }
           }
         `}</style>
       </>

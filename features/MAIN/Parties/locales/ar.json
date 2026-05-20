@@ -1,0 +1,87 @@
+{
+  "title": "إدارة الأطراف",
+  "description": "إدارة العملاء والموردين والوكلاء والمقاولين",
+  "addParty": "إضافة طرف",
+  "editParty": "تعديل الطرف",
+  "deleteParty": "حذف الطرف",
+  "stats": {
+    "totalParties": "إجمالي الأطراف",
+    "customers": "العملاء",
+    "suppliers": "الموردين",
+    "agents": "الوكلاء",
+    "contractors": "المقاولين"
+  },
+  "table": {
+    "code": "الرمز",
+    "displayName": "الاسم",
+    "type": "النوع",
+    "roles": "الأدوار",
+    "legalName": "الاسم القانوني",
+    "taxNumber": "الرقم الضريبي",
+    "currency": "العملة",
+    "status": "الحالة",
+    "actions": "الإجراءات"
+  },
+  "types": {
+    "individual": "فرد",
+    "company": "شركة"
+  },
+  "roles": {
+    "customer": "عميل",
+    "supplier": "مورد",
+    "agent": "وكيل",
+    "contractor": "مقاول"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "form": {
+    "code": "رمز الطرف",
+    "codePlaceholder": "أدخل رمزًا فريدًا (مثال: CUST001)",
+    "displayName": "الاسم المعروض",
+    "displayNamePlaceholder": "أدخل الاسم المعروض",
+    "type": "النوع",
+    "typePlaceholder": "اختر النوع",
+    "legalName": "الاسم القانوني",
+    "legalNamePlaceholder": "أدخل الاسم القانوني",
+    "taxNumber": "الرقم الضريبي",
+    "taxNumberPlaceholder": "أدخل الرقم الضريبي",
+    "currency": "العملة",
+    "currencyPlaceholder": "اختر العملة",
+    "roles": "الأدوار",
+    "rolesPlaceholder": "اختر الأدوار",
+    "notes": "ملاحظات",
+    "notesPlaceholder": "أدخل أي ملاحظات إضافية...",
+    "isActive": "نشط"
+  },
+  "modalTitle": "إضافة طرف",
+  "editModalTitle": "تعديل الطرف",
+  "submit": "إنشاء طرف",
+  "save": "حفظ التغييرات",
+  "cancel": "إلغاء",
+  "emptyMessage": "لم يتم العثور على أطراف",
+  "createFirstParty": "أنشئ طرفك الأول للبدء",
+  "delete": {
+    "title": "حذف الطرف",
+    "message": "هل أنت متأكد من أنك تريد حذف",
+    "description": "لا يمكن التراجع عن هذا الإجراء. ستتأثر جميع البيانات المرتبطة.",
+    "confirm": "حذف"
+  },
+  "messages": {
+    "createSuccess": "تم إنشاء الطرف بنجاح",
+    "updateSuccess": "تم تحديث الطرف بنجاح",
+    "deleteSuccess": "تم حذف الطرف بنجاح",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا الطرف؟"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "codeRequired": "رمز الطرف مطلوب",
+    "codeMax": "يجب أن يكون الرمز أقل من 50 حرفًا",
+    "displayNameRequired": "الاسم المعروض مطلوب",
+    "displayNameMax": "يجب أن يكون الاسم أقل من 255 حرفًا",
+    "legalNameMax": "يجب أن يكون الاسم القانوني أقل من 255 حرفًا",
+    "taxNumberMax": "يجب أن يكون الرقم الضريبي أقل من 50 حرفًا",
+    "typeRequired": "النوع مطلوب"
+  }
+}

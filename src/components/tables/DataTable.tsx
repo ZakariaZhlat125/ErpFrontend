@@ -378,17 +378,17 @@ export function DataTable<T extends Record<string, any>>({
   const showToolbar = title || subtitle || searchCfg || toolbar || headerExtra || exportConfig?.enabled || onRefresh;
 
   return (
-    <div className="datatable-wrapper">
+    <div className="datatable-wrapper w-full">
       {showToolbar && (
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center justify-between gap-3 mb-4">
           {/* Left side: title / subtitle */}
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap-0.5 w-full sm:w-auto">
             {title && <div className="text-lg font-semibold">{title}</div>}
             {subtitle && <div className="text-sm text-gray-500">{subtitle}</div>}
           </div>
 
           {/* Right side: search + toolbar + extras */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             {searchCfg && (
               <Input
                 prefix={<SearchOutlined />}
@@ -396,7 +396,7 @@ export function DataTable<T extends Record<string, any>>({
                 allowClear
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                style={{ width: 240 }}
+                className="w-full sm:w-60"
               />
             )}
             {toolbar}
@@ -429,37 +429,40 @@ export function DataTable<T extends Record<string, any>>({
         </div>
       )}
 
-      <Table<T>
-        columns={antColumns}
-        dataSource={filteredData}
-        rowKey={(record) => String(record[idField])}
-        loading={loading}
-        size={size}
-        bordered={bordered}
-        sticky={sticky}
-        scroll={scroll}
-        pagination={antPagination}
-        rowSelection={rowSelection as any}
-        expandable={antExpandable}
-        onChange={onChange}
-        onRow={(record) => ({
-          onClick: onRowClick ? () => onRowClick(record) : undefined,
-          style: { cursor: onRowClick ? 'pointer' : 'default' },
-        })}
-        rowClassName={(record, index) => {
-          const custom = rowClassName?.(record, index) ?? '';
-          const stripe = striped && index % 2 === 1 ? 'bg-gray-50' : '';
-          return `${stripe} ${custom}`.trim();
-        }}
-        locale={{
-          emptyText: (
-            <div className="flex flex-col items-center justify-center py-12">
-              <p className="text-gray-400">{emptyMessage}</p>
-            </div>
-          ),
-        }}
-        footer={footer ? () => <>{footer}</> : undefined}
-      />
+      {/* Responsive table container with horizontal scroll */}
+      <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+        <Table<T>
+          columns={antColumns}
+          dataSource={filteredData}
+          rowKey={(record) => String(record[idField])}
+          loading={loading}
+          size={size}
+          bordered={bordered}
+          sticky={sticky}
+          scroll={scroll || { x: 'max-content' }}
+          pagination={antPagination}
+          rowSelection={rowSelection as any}
+          expandable={antExpandable}
+          onChange={onChange}
+          onRow={(record) => ({
+            onClick: onRowClick ? () => onRowClick(record) : undefined,
+            style: { cursor: onRowClick ? 'pointer' : 'default' },
+          })}
+          rowClassName={(record, index) => {
+            const custom = rowClassName?.(record, index) ?? '';
+            const stripe = striped && index % 2 === 1 ? 'bg-gray-50' : '';
+            return `${stripe} ${custom}`.trim();
+          }}
+          locale={{
+            emptyText: (
+              <div className="flex flex-col items-center justify-center py-12">
+                <p className="text-gray-400">{emptyMessage}</p>
+              </div>
+            ),
+          }}
+          footer={footer ? () => <>{footer}</> : undefined}
+        />
+      </div>
     </div>
   );
 }

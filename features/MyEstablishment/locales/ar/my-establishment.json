@@ -30,6 +30,40 @@
     "reports": "التقارير",
     "settings": "الإعدادات"
   },
+  "sections": {
+    "basicInfo": "المعلومات الأساسية",
+    "regionalSettings": "الإعدادات الإقليمية",
+    "contactInfo": "معلومات الاتصال"
+  },
+  "reset": "إعادة تعيير",
+  "form": {
+    "name": "اسم المنظمة",
+    "namePlaceholder": "أدخل اسم المنظمة",
+    "legalName": "الاسم القانوني",
+    "legalNamePlaceholder": "أدخل الاسم القانوني",
+    "taxNumber": "الرقم الضريبي",
+    "taxNumberPlaceholder": "أدخل الرقم الضريبي",
+    "baseCurrency": "العملة الأساسية",
+    "baseCurrencyPlaceholder": "اختر العملة",
+    "timezone": "المنطقة الزمنية",
+    "timezonePlaceholder": "اختر المنطقة الزمنية",
+    "locale": "اللغة",
+    "localePlaceholder": "اختر اللغة",
+    "status": "الحالة",
+    "address": "العنوان",
+    "addressPlaceholder": "أدخل العنوان",
+    "phone": "الهاتف",
+    "phonePlaceholder": "أدخل رقم الهاتف",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "email@example.com",
+    "website": "الموقع الإلكتروني",
+    "websitePlaceholder": "https://example.com"
+  },
+  "modalTitle": "إضافة منظمة",
+  "editModalTitle": "تعديل المنظمة",
+  "submit": "إنشاء منظمة",
+  "save": "حفظ التغييرات",
+  "cancel": "إلغاء",
   "delete": {
     "title": "حذف المنشأة",
     "message": "هل أنت متأكد من أنك تريد حذف",
@@ -40,5 +74,19 @@
   "error": {
     "title": "فشل في تحميل المنشآت",
     "message": "غير قادر على تحميل منشآتك. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "nameRequired": "اسم المنظمة مطلوب",
+    "legalNameRequired": "الاسم القانوني مطلوب",
+    "taxNumberRequired": "الرقم الضريبي مطلوب",
+    "baseCurrencyRequired": "العملة الأساسية مطلوبة",
+    "timezoneRequired": "المنطقة الزمنية مطلوبة",
+    "localeRequired": "اللغة مطلوبة",
+    "addressRequired": "العنوان مطلوب",
+    "phoneRequired": "الهاتف مطلوب",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "emailInvalid": "عنوان البريد الإلكتروني غير صالح",
+    "websiteInvalid": "عنوان الموقع الإلكتروني غير صالح"
   }
 }

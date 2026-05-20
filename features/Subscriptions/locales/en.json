@@ -1,0 +1,81 @@
+{
+  "title": "Organization Subscriptions",
+  "description": "Manage organization subscriptions and billing",
+  "addSubscription": "Add Subscription",
+  "editSubscription": "Edit Subscription",
+  "deleteSubscription": "Delete Subscription",
+  "renewSubscription": "Renew Subscription",
+  "cancelSubscription": "Cancel Subscription",
+  "stats": {
+    "totalSubscriptions": "Total Subscriptions",
+    "activeSubscriptions": "Active",
+    "pendingSubscriptions": "Pending",
+    "cancelledSubscriptions": "Cancelled",
+    "expiredSubscriptions": "Expired"
+  },
+  "table": {
+    "organization": "Organization",
+    "plan": "Plan",
+    "status": "Status",
+    "billing": "Billing",
+    "price": "Price",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "autoRenew": "Auto Renew",
+    "actions": "Actions"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "cancelled": "Cancelled",
+    "expired": "Expired"
+  },
+  "billingCycle": {
+    "monthly": "Monthly",
+    "yearly": "Yearly"
+  },
+  "paymentMethod": {
+    "creditCard": "Credit Card",
+    "paypal": "PayPal",
+    "bankTransfer": "Bank Transfer",
+    "cash": "Cash"
+  },
+  "form": {
+    "organizationId": "Organization ID",
+    "organizationIdPlaceholder": "Select organization",
+    "planId": "Plan ID",
+    "planIdPlaceholder": "Select plan",
+    "billingCycle": "Billing Cycle",
+    "paymentMethod": "Payment Method",
+    "paymentMethodPlaceholder": "Select payment method",
+    "selectPaymentMethod": "Select payment method",
+    "autoRenew": "Auto Renew",
+    "startDate": "Start Date",
+    "endDate": "End Date"
+  },
+  "modalTitle": "Add Subscription",
+  "editModalTitle": "Edit Subscription",
+  "submit": "Create Subscription",
+  "save": "Save Changes",
+  "cancel": "Cancel",
+  "emptyMessage": "No subscriptions found",
+  "messages": {
+    "createSuccess": "Subscription created successfully",
+    "updateSuccess": "Subscription updated successfully",
+    "deleteSuccess": "Subscription deleted successfully",
+    "renewSuccess": "Subscription renewed successfully",
+    "cancelSuccess": "Subscription cancelled successfully",
+    "deleteConfirm": "Are you sure you want to delete this subscription?",
+    "renewConfirm": "Are you sure you want to renew this subscription?",
+    "cancelConfirm": "Are you sure you want to cancel this subscription?"
+  },
+  "validation": {
+    "required": "This field is required",
+    "planRequired": "Plan is required",
+    "billingCycleRequired": "Billing cycle is required",
+    "startDateRequired": "Start date is required",
+    "endDateRequired": "End date is required",
+    "organizationRequired": "Organization is required"
+  }
+}

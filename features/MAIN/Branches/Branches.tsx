@@ -9,6 +9,7 @@ import { BranchFormModal } from './components/BranchFormModal';
 import { useBranchesFeature } from './hooks/useBranches';
 import { useBranchForm } from './hooks/useBranchForm';
 import type { Branch } from './types/branch.types';
+import { useTranslations } from 'next-intl';
 
 // TODO: Get organization ID from context or route params
 const ORGANIZATION_ID = 1;
@@ -16,6 +17,7 @@ const ORGANIZATION_ID = 1;
 export function Branches() {
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [editingBranch, setEditingBranch] = useState<Branch | null>(null);
+  const t = useTranslations('branches');
 
   // Business logic hook
   const {
@@ -87,7 +89,7 @@ export function Branches() {
       <div className="min-h-screen bg-background p-4 md:p-6">
         <div className="mx-auto max-w-7xl">
           <div className="rounded-lg bg-red-50 p-4 text-red-700">
-            Error loading branches. Please try again later.
+            {t('error.loading')}
           </div>
         </div>
       </div>
@@ -97,7 +99,7 @@ export function Branches() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-6">
       <div className="mx-auto max-w-7xl">
-        <BranchesHeader onAddBranch={handleAddClick} />
+        <BranchesHeader onAdd={handleAddClick} />
 
         <SearchFilters />
 
@@ -114,9 +116,9 @@ export function Branches() {
 
         {!branches?.length && (
           <div className="flex flex-col items-center justify-center py-20">
-            <p className="text-lg text-text-secondary">No branches found</p>
+            <p className="text-lg text-text-secondary">{t('emptyMessage')}</p>
             <p className="mt-2 text-sm text-text-muted">
-              Create your first branch to get started
+              {t('createFirstBranch')}
             </p>
           </div>
         )}
@@ -126,11 +128,11 @@ export function Branches() {
           onClose={handleCloseDeleteModal}
           onConfirm={handleDeleteConfirm}
           type="delete"
-          title="Delete Branch"
-          message={`Are you sure you want to delete ${selectedBranch?.name}?`}
-          description="This action cannot be undone. All associated data will be affected."
-          confirmText="Delete"
-          cancelText="Cancel"
+          title={t('delete.title')}
+          message={`${t('delete.message')} ${selectedBranch?.name}?`}
+          description={t('delete.description')}
+          confirmText={t('delete.confirm')}
+          cancelText={t('form.cancel')}
         />
 
         <BranchFormModal

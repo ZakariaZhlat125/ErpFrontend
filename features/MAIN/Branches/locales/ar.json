@@ -1,0 +1,69 @@
+{
+  "title": "إدارة الفروع",
+  "description": "إدارة فروع المنظمة والمواقع",
+  "addBranch": "إضافة فرع",
+  "editBranch": "تعديل الفرع",
+  "deleteBranch": "حذف الفرع",
+  "stats": {
+    "totalBranches": "إجمالي الفروع",
+    "activeBranches": "الفروع النشطة",
+    "inactiveBranches": "الفروع غير النشطة"
+  },
+  "table": {
+    "code": "الرمز",
+    "name": "اسم الفرع",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "status": "الحالة",
+    "actions": "الإجراءات"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "form": {
+    "name": "اسم الفرع",
+    "namePlaceholder": "أدخل اسم الفرع",
+    "code": "رمز الفرع",
+    "codePlaceholder": "أدخل رمزًا فريدًا (مثال: BR001)",
+    "address": "العنوان",
+    "addressPlaceholder": "أدخل العنوان الكامل",
+    "phone": "الهاتف",
+    "phonePlaceholder": "+1234567890",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "branch@example.com",
+    "isActive": "نشط"
+  },
+  "modalTitle": "إضافة فرع",
+  "editModalTitle": "تعديل الفرع",
+  "submit": "إنشاء فرع",
+  "save": "حفظ التغييرات",
+  "cancel": "إلغاء",
+  "emptyMessage": "لم يتم العثور على فروع",
+  "createFirstBranch": "أنشئ فرعك الأول للبدء",
+  "error": {
+    "loading": "خطأ في تحميل الفروع. يرجى المحاولة مرة أخرى لاحقاً."
+  },
+  "delete": {
+    "title": "حذف الفرع",
+    "message": "هل أنت متأكد من أنك تريد حذف",
+    "description": "لا يمكن التراجع عن هذا الإجراء. ستتأثر جميع البيانات المرتبطة.",
+    "confirm": "حذف"
+  },
+  "messages": {
+    "createSuccess": "تم إنشاء الفرع بنجاح",
+    "updateSuccess": "تم تحديث الفرع بنجاح",
+    "deleteSuccess": "تم حذف الفرع بنجاح",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا الفرع؟"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "nameRequired": "اسم الفرع مطلوب",
+    "nameMax": "يجب أن يكون الاسم أقل من 255 حرفًا",
+    "codeRequired": "رمز الفرع مطلوب",
+    "codeMax": "يجب أن يكون الرمز أقل من 50 حرفًا",
+    "phoneMax": "يجب أن يكون الهاتف أقل من 20 حرفًا",
+    "emailInvalid": "عنوان البريد الإلكتروني غير صالح"
+  }
+}

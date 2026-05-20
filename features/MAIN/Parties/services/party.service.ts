@@ -1,4 +1,8 @@
 import { apiClient } from '@/lib/api/client';
+import {
+  PARTY_ENDPOINTS,
+  PARTY_QUERY_KEYS 
+} from '../api/endpoints';
 import type {
   Party,
   CreatePartyInput,
@@ -18,7 +22,7 @@ export const partyApi = {
    */
   async getAll(organizationId: number, filters?: PartyFilters): Promise<Party[]> {
     const response = await apiClient.get<ApiResponse<Party[]>>(
-      `/organizations/${organizationId}/parties`,
+      PARTY_ENDPOINTS.LIST(organizationId),
       { params: filters }
     );
     return response.data.data;
@@ -29,7 +33,7 @@ export const partyApi = {
    */
   async getById(organizationId: number, partyId: number): Promise<Party> {
     const response = await apiClient.get<ApiResponse<Party>>(
-      `/organizations/${organizationId}/parties/${partyId}`
+      PARTY_ENDPOINTS.DETAIL(organizationId, partyId)
     );
     return response.data.data;
   },
@@ -39,7 +43,7 @@ export const partyApi = {
    */
   async create(organizationId: number, data: CreatePartyInput): Promise<Party> {
     const response = await apiClient.post<ApiResponse<Party>>(
-      `/organizations/${organizationId}/parties`,
+      PARTY_ENDPOINTS.CREATE(organizationId),
       data
     );
     return response.data.data;
@@ -54,7 +58,7 @@ export const partyApi = {
     data: UpdatePartyInput
   ): Promise<Party> {
     const response = await apiClient.put<ApiResponse<Party>>(
-      `/organizations/${organizationId}/parties/${partyId}`,
+      PARTY_ENDPOINTS.UPDATE(organizationId, partyId),
       data
     );
     return response.data.data;
@@ -64,7 +68,7 @@ export const partyApi = {
    * Delete a party
    */
   async delete(organizationId: number, partyId: number): Promise<void> {
-    await apiClient.delete(`/organizations/${organizationId}/parties/${partyId}`);
+    await apiClient.delete(PARTY_ENDPOINTS.DELETE(organizationId, partyId));
   },
 
   /**
@@ -72,7 +76,7 @@ export const partyApi = {
    */
   async toggleStatus(organizationId: number, partyId: number): Promise<Party> {
     const response = await apiClient.post<ApiResponse<Party>>(
-      `/organizations/${organizationId}/parties/${partyId}/toggle-status`
+      PARTY_ENDPOINTS.TOGGLE_STATUS(organizationId, partyId)
     );
     return response.data.data;
   },
@@ -82,7 +86,7 @@ export const partyApi = {
    */
   async search(organizationId: number, query: string): Promise<Party[]> {
     const response = await apiClient.get<ApiResponse<Party[]>>(
-      `/organizations/${organizationId}/parties/search`,
+      PARTY_ENDPOINTS.SEARCH(organizationId),
       { params: { q: query } }
     );
     return response.data.data;
@@ -93,7 +97,7 @@ export const partyApi = {
    */
   async getStatistics(organizationId: number): Promise<any> {
     const response = await apiClient.get<ApiResponse<any>>(
-      `/organizations/${organizationId}/parties/statistics`
+      PARTY_ENDPOINTS.STATISTICS(organizationId)
     );
     return response.data.data;
   },

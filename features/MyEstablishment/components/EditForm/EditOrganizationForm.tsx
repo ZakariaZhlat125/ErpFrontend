@@ -9,6 +9,7 @@ import { RHFInput } from '@/components/forms/RHFInput';
 import { RHFSelect } from '@/components/forms/RHFSelect';
 import { useOrganizationForm } from '../../hooks/useOrganizationForm';
 import { Organization } from '../../types/organization.types';
+import { useTranslations } from 'next-intl';
 
 const currencyOptions = [
   { label: 'USD - US Dollar', value: '1' },
@@ -47,6 +48,7 @@ interface EditOrganizationFormProps {
 
 export function EditOrganizationForm({ open, onClose, organization, onSuccess }: EditOrganizationFormProps) {
   const { tokens } = useTheme();
+  const t = useTranslations('myEstablishment');
   
   const {
     form,
@@ -88,7 +90,7 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
       title=""
     >
       <FormContainer
-        title="Edit Organization"
+        title={t('editModalTitle')}
         error={error}
         success={success}
         onSubmit={onSubmit}
@@ -97,15 +99,15 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
           {/* Basic Information */}
           <div>
             <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-              Basic Information
+              {t('sections.basicInfo')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <RHFInput
                 methods={form}
                 name="name"
                 type="text"
-                label="Organization Name"
-                placeholder="enter text"
+                label={t('form.name')}
+                placeholder={t('form.namePlaceholder')}
                 required
               />
 
@@ -113,7 +115,7 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
                 methods={form}
                 name="legal_name"
                 type="text"
-                label="Legal Name"
+                label={t('form.legalName')}
                 required
               />
 
@@ -121,14 +123,14 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
                 methods={form}
                 name="tax_number"
                 type="text"
-                label="Tax Number"
+                label={t('form.taxNumber')}
                 required
               />
 
               <RHFSelect
                 methods={form}
                 name="base_currency_id"
-                label="Base Currency"
+                label={t('form.baseCurrency')}
                 required
                 options={currencyOptions}
               />
@@ -138,13 +140,13 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
           {/* Regional Settings */}
           <div>
             <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-              Regional Settings
+              {t('sections.regionalSettings')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <RHFSelect
                 methods={form}
                 name="timezone"
-                label="Timezone"
+                label={t('form.timezone')}
                 required
                 options={timezoneOptions}
               />
@@ -152,7 +154,7 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
               <RHFSelect
                 methods={form}
                 name="locale"
-                label="Locale"
+                label={t('form.locale')}
                 required
                 options={localeOptions}
               />
@@ -160,7 +162,7 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
               <RHFSelect
                 methods={form}
                 name="status"
-                label="Status"
+                label={t('form.status')}
                 required
                 options={statusOptions}
               />
@@ -170,14 +172,14 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
           {/* Contact Information */}
           <div>
             <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-              Contact Information
+              {t('sections.contactInfo')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <RHFInput
                 methods={form}
                 name="address"
                 type="text"
-                label="Address"
+                label={t('form.address')}
                 required
               />
 
@@ -185,7 +187,7 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
                 methods={form}
                 name="phone"
                 type="text"
-                label="Phone"
+                label={t('form.phone')}
                 required
               />
 
@@ -193,7 +195,7 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
                 methods={form}
                 name="email"
                 type="email"
-                label="Email"
+                label={t('form.email')}
                 required
               />
 
@@ -201,8 +203,8 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
                 methods={form}
                 name="website"
                 type="text"
-                label="Website"
-                placeholder="https://example.com"
+                label={t('form.website')}
+                placeholder={t('form.websitePlaceholder')}
               />
             </div>
           </div>
@@ -213,13 +215,13 @@ export function EditOrganizationForm({ open, onClose, organization, onSuccess }:
               variant="secondary"
               onClick={handleCancel}
             >
-              Cancel
+              {t('cancel')}
             </Button>
             <Button
               variant="primary"
               isLoading={isPending}
             >
-              Update Organization
+              {t('save')}
             </Button>
           </div>
         </div>

@@ -30,6 +30,40 @@
     "reports": "Reports",
     "settings": "Settings"
   },
+  "sections": {
+    "basicInfo": "Basic Information",
+    "regionalSettings": "Regional Settings",
+    "contactInfo": "Contact Information"
+  },
+  "reset": "Reset",
+  "form": {
+    "name": "Organization Name",
+    "namePlaceholder": "Enter organization name",
+    "legalName": "Legal Name",
+    "legalNamePlaceholder": "Enter legal name",
+    "taxNumber": "Tax Number",
+    "taxNumberPlaceholder": "Enter tax number",
+    "baseCurrency": "Base Currency",
+    "baseCurrencyPlaceholder": "Select currency",
+    "timezone": "Timezone",
+    "timezonePlaceholder": "Select timezone",
+    "locale": "Locale",
+    "localePlaceholder": "Select locale",
+    "status": "Status",
+    "address": "Address",
+    "addressPlaceholder": "Enter address",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter phone number",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "website": "Website",
+    "websitePlaceholder": "https://example.com"
+  },
+  "modalTitle": "Add Organization",
+  "editModalTitle": "Edit Organization",
+  "submit": "Create Organization",
+  "save": "Save Changes",
+  "cancel": "Cancel",
   "delete": {
     "title": "Delete Organization",
     "message": "Are you sure you want to delete",
@@ -40,5 +74,19 @@
   "error": {
     "title": "Failed to Load Organizations",
     "message": "Unable to load your organizations. Please check your connection and try again."
+  },
+  "validation": {
+    "required": "This field is required",
+    "nameRequired": "Organization name is required",
+    "legalNameRequired": "Legal name is required",
+    "taxNumberRequired": "Tax number is required",
+    "baseCurrencyRequired": "Base currency is required",
+    "timezoneRequired": "Timezone is required",
+    "localeRequired": "Locale is required",
+    "addressRequired": "Address is required",
+    "phoneRequired": "Phone is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "websiteInvalid": "Invalid website URL"
   }
 }

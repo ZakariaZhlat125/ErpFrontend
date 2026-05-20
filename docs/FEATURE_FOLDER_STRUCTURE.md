@@ -5,11 +5,17 @@
 ```
 features/[FeatureName]/
 │
+├── api/
+│   └── endpoints.ts
+│
 ├── types/
 │   └── [feature].types.ts
 │
 ├── constants/
 │   └── [feature].constants.ts
+│
+├── schemas/
+│   └── [feature].schema.ts
 │
 ├── services/
 │   └── [feature].service.ts
@@ -47,8 +53,10 @@ features/[FeatureName]/
 
 | Layer | Purpose |
 |-------|---------|
+| `api/` | API endpoint definitions & URL constants |
 | `types/` | TypeScript interfaces only |
 | `constants/` | Query keys, defaults, enums |
+| `schemas/` | Zod validation schemas for forms |
 | `services/` | API calls (no React) |
 | `hooks/` | Data fetching + business logic |
 | `utils/` | Pure utility functions |
@@ -62,8 +70,10 @@ features/[FeatureName]/
 
 | File Type | Pattern | Example |
 |-----------|---------|---------|
+| Endpoints | `endpoints.ts` | `endpoints.ts` |
 | Types | `[feature].types.ts` | `product.types.ts` |
 | Constants | `[feature].constants.ts` | `product.constants.ts` |
+| Schema | `[feature].schema.ts` | `product.schema.ts` |
 | Service | `[feature].service.ts` | `product.service.ts` |
 | Data Hooks | `[feature].ts` | `product.ts` |
 | Business Hook | `use[Feature].ts` | `useProduct.ts` |
@@ -90,14 +100,75 @@ export const DEFAULT_VALUES = { ... };
 export enum ProductStatus { ... }
 ```
 
+### Schema (`schemas/[feature].schema.ts`)
+```typescript
+import { z } from 'zod';
+
+export const productSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  description: z.string().optional(),
+  price: z.number().min(0, 'Price must be 0 or greater'),
+  status: z.string().min(1, 'Status is required'),
+  is_active: z.boolean(),
+});
+
+export type ProductFormData = z.infer<typeof productSchema>;
+```
+
+### Endpoints (`api/endpoints.ts`)
+```typescript
+export const PRODUCT_ENDPOINTS = {
+  BASE: '/products',
+  LIST: '/products',
+  CREATE: '/products',
+  DETAIL: (id: string) => `/products/${id}`,
+  UPDATE: (id: string) => `/products/${id}`,
+  DELETE: (id: string) => `/products/${id}`,
+  TOGGLE_STATUS: (id: string) => `/products/${id}/toggle-status`,
+} as const;
+
+export const PRODUCT_QUERY_KEYS = {
+  STATUS: 'status',
+  SEARCH: 'search',
+  PAGE: 'page',
+  PER_PAGE: 'per_page',
+} as const;
+```
+
 ### Service (`services/[feature].service.ts`)
 ```typescript
+import { PRODUCT_ENDPOINTS, PRODUCT_QUERY_KEYS } from '../api/endpoints';
+
 export const productApi = {
-  getAll: (filters?) => ...,
-  getById: (id) => ...,
-  create: (data) => ...,
-  update: (id, data) => ...,
-  delete: (id) => ...,
+  async getAll(filters?: ProductFilters) {
+    const params = new URLSearchParams();
+    const q = PRODUCT_QUERY_KEYS;
+    
+    if (filters?.status) params.append(q.STATUS, filters.status);
+    if (filters?.search) params.append(q.SEARCH, filters.search);
+    
+    const url = params.toString() 
+      ? `${PRODUCT_ENDPOINTS.LIST}?${params.toString()}` 
+      : PRODUCT_ENDPOINTS.LIST;
+    
+    return apiClient.get(url);
+  },
+  
+  async getById(id: string) {
+    return apiClient.get(PRODUCT_ENDPOINTS.DETAIL(id));
+  },
+  
+  async create(data: CreateProductInput) {
+    return apiClient.post(PRODUCT_ENDPOINTS.CREATE, data);
+  },
+  
+  async update(id: string, data: Partial<UpdateProductInput>) {
+    return apiClient.put(PRODUCT_ENDPOINTS.UPDATE(id), data);
+  },
+  
+  async delete(id: string) {
+    return apiClient.delete(PRODUCT_ENDPOINTS.DELETE(id));
+  },
 };
 ```
 

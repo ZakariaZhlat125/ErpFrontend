@@ -11,6 +11,7 @@ import { PartyFormModal } from './components/PartyFormModal';
 import { useParties } from './hooks/useParties';
 import { usePartyForm } from './hooks/usePartyForm';
 import type { Party } from './types/party.types';
+import { useTranslations } from 'next-intl';
 
 interface PartiesProps {
   organizationId: number;
@@ -19,6 +20,7 @@ interface PartiesProps {
 export function Parties({ organizationId }: PartiesProps) {
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [editingParty, setEditingParty] = useState<Party | null>(null);
+  const t = useTranslations('parties');
 
   // Business logic hook
   const {
@@ -78,7 +80,7 @@ export function Parties({ organizationId }: PartiesProps) {
   return (
     <div className="min-h-screen bg-background p-4 md:p-6">
       <div className="mx-auto max-w-7xl">
-        <PartiesHeader onAddParty={handleAddClick} />
+        <PartiesHeader onAdd={handleAddClick} />
 
         <SearchFilters />
 
@@ -95,9 +97,9 @@ export function Parties({ organizationId }: PartiesProps) {
 
         {!parties?.length && (
           <div className="flex flex-col items-center justify-center py-20">
-            <p className="text-lg text-text-secondary">No parties found</p>
+            <p className="text-lg text-text-secondary">{t('emptyMessage')}</p>
             <p className="mt-2 text-sm text-text-muted">
-              Create your first party to get started
+              {t('createFirstParty')}
             </p>
           </div>
         )}
@@ -107,11 +109,11 @@ export function Parties({ organizationId }: PartiesProps) {
           onClose={handleCloseDeleteModal}
           onConfirm={handleDeleteConfirm}
           type="delete"
-          title="Delete Party"
-          message={`Are you sure you want to delete ${selectedParty?.name}?`}
-          description="This action cannot be undone. All associated data will be affected."
-          confirmText="Delete"
-          cancelText="Cancel"
+          title={t('delete.title')}
+          message={`${t('delete.message')} ${selectedParty?.name}?`}
+          description={t('delete.description')}
+          confirmText={t('delete.confirm')}
+          cancelText={t('form.cancel')}
         />
 
         <PartyFormModal

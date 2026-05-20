@@ -1,28 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useCreateOrganization, useUpdateOrganization } from './useOrganizations';
 import { Organization, CreateOrganizationInput, UpdateOrganizationInput } from '../types/organization.types';
 import { DEFAULT_ORGANIZATION_VALUES } from '../constants/organization.constants';
+import { organizationSchema, type OrganizationFormData } from '../schemas/organization.schema';
 
-const schema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  legal_name: z.string().min(1, 'Legal name is required'),
-  tax_number: z.string().min(1, 'Tax number is required'),
-  base_currency_id: z.number().min(1, 'Base currency is required'),
-  timezone: z.string().min(1, 'Timezone is required'),
-  locale: z.string().min(1, 'Locale is required'),
-  status: z.enum(['active', 'inactive', 'pending']),
-  address: z.string().min(1, 'Address is required'),
-  phone: z.string().min(1, 'Phone is required'),
-  email: z.string().email('Invalid email address'),
-  website: z.string().url('Invalid website URL').optional().or(z.literal('')),
-});
-
-export type OrganizationFormValues = z.infer<typeof schema>;
-
-const defaultValues: OrganizationFormValues = DEFAULT_ORGANIZATION_VALUES as OrganizationFormValues;
+const defaultValues: OrganizationFormData = DEFAULT_ORGANIZATION_VALUES as OrganizationFormData;
 
 interface UseOrganizationFormOptions {
   mode: 'create' | 'edit';
@@ -37,10 +21,10 @@ export function useOrganizationForm({ mode, organization, onSuccess }: UseOrgani
   const createOrganization = useCreateOrganization();
   const updateOrganization = useUpdateOrganization();
 
-  const form = useForm<OrganizationFormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<OrganizationFormData>({
+    resolver: zodResolver(organizationSchema) as any,
     mode: 'onBlur',
-    defaultValues,
+    defaultValues: DEFAULT_ORGANIZATION_VALUES as OrganizationFormData,
   });
 
   const { reset } = form;
@@ -51,21 +35,21 @@ export function useOrganizationForm({ mode, organization, onSuccess }: UseOrgani
         name: organization.name,
         legal_name: organization.legal_name,
         tax_number: organization.tax_number,
-        base_currency_id: organization.base_currency_id,
+        base_currency_id: organization.base_currency_id ?? undefined,
         timezone: organization.timezone,
         locale: organization.locale,
         status: organization.status,
         address: organization.address,
         phone: organization.phone,
         email: organization.email,
-        website: organization.website,
+        website: organization.website ?? undefined,
       });
     } else if (mode === 'create') {
       reset(defaultValues);
     }
   }, [mode, organization, reset]);
 
-  const handleSubmit = async (values: OrganizationFormValues) => {
+  const handleSubmit = async (values: OrganizationFormData) => {
     setError(null);
     setSuccess(null);
 

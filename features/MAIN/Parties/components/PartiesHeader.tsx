@@ -1,24 +1,26 @@
+"use client";
+
 import { Button } from '@/components/ui';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslations } from 'next-intl';
 
 interface PartiesHeaderProps {
-  onAddParty: () => void;
+  onAdd: () => void;
 }
 
-export function PartiesHeader({ onAddParty }: PartiesHeaderProps) {
+export function PartiesHeader({ onAdd }: PartiesHeaderProps) {
+  const t = useTranslations('parties');
+
   return (
-    <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+    <div className="flex items-center justify-between">
       <div>
-        <h1 className="text-4xl font-extrabold tracking-tight text-text">
-          Parties
-        </h1>
-        <p className="mt-1 text-base text-text-secondary">
-          Manage customers, suppliers, agents, and contractors
+        <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
+        <p className="text-muted-foreground">
+          {t('description')}
         </p>
       </div>
-
-      <Button variant="primary" onClick={onAddParty}>
-        <PlusOutlined /> Add Party
+      <Button onClick={onAdd} icon={<PlusOutlined />}>
+        {t('addParty')}
       </Button>
     </div>
   );

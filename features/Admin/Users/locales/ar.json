@@ -1,0 +1,80 @@
+{
+  "title": "إدارة المستخدمين",
+  "description": "إدارة مستخدمي النظام وأدوارهم",
+  "addUser": "إضافة مستخدم",
+  "editUser": "تعديل المستخدم",
+  "deleteUser": "حذف المستخدم",
+  "stats": {
+    "totalUsers": "إجمالي المستخدمين",
+    "activeUsers": "نشط",
+    "adminUsers": "المسؤولين",
+    "pendingUsers": "معلق",
+    "suspendedUsers": "موقوف"
+  },
+  "table": {
+    "user": "المستخدم",
+    "role": "الدور",
+    "status": "الحالة",
+    "phone": "الهاتف",
+    "organization": "المنظمة",
+    "lastLogin": "آخر تسجيل دخول",
+    "emailVerified": "تم التحقق",
+    "actions": "الإجراءات"
+  },
+  "roles": {
+    "admin": "مسؤول",
+    "manager": "مدير",
+    "user": "مستخدم",
+    "viewer": "مشاهد"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "suspended": "موقوف",
+    "pending": "معلق"
+  },
+  "form": {
+    "name": "الاسم الكامل",
+    "namePlaceholder": "أدخل الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "user@example.com",
+    "phone": "الهاتف",
+    "phonePlaceholder": "+1234567890",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "8 أحرف على الأقل",
+    "newPassword": "كلمة المرور الجديدة (اتركها فارغة للإبقاء على الحالية)",
+    "newPasswordPlaceholder": "أدخل كلمة المرور الجديدة",
+    "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+    "confirmNewPasswordPlaceholder": "تأكيد كلمة المرور الجديدة",
+    "passwordConfirmation": "تأكيد كلمة المرور",
+    "passwordConfirmationPlaceholder": "أعد إدخال كلمة المرور",
+    "role": "الدور",
+    "rolePlaceholder": "اختر الدور",
+    "status": "الحالة",
+    "statusPlaceholder": "اختر الحالة",
+    "organizationId": "معرف المنظمة",
+    "branchId": "معرف الفرع"
+  },
+  "modalTitle": "إضافة مستخدم",
+  "editModalTitle": "تعديل المستخدم",
+  "submit": "إنشاء مستخدم",
+  "save": "حفظ التغييرات",
+  "cancel": "إلغاء",
+  "emptyMessage": "لم يتم العثور على مستخدمين",
+  "messages": {
+    "createSuccess": "تم إنشاء المستخدم بنجاح",
+    "updateSuccess": "تم تحديث المستخدم بنجاح",
+    "deleteSuccess": "تم حذف المستخدم بنجاح",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا المستخدم؟"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "nameRequired": "الاسم مطلوب",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "emailInvalid": "عنوان البريد الإلكتروني غير صالح",
+    "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "passwordMatch": "كلمات المرور غير متطابقة",
+    "roleRequired": "الدور مطلوب",
+    "statusRequired": "الحالة مطلوبة"
+  }
+}

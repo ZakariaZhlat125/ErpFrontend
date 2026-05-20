@@ -1,0 +1,83 @@
+{
+  "title": "الإعدادات",
+  "description": "إدارة إعدادات الحساب والتفضيلات",
+  "tabs": {
+    "general": "عام",
+    "notifications": "الإشعارات",
+    "security": "الأمان",
+    "appearance": "المظهر",
+    "language": "اللغة"
+  },
+  "general": {
+    "title": "الإعدادات العامة",
+    "language": "اللغة",
+    "languageDescription": "اختر لغتك المفضلة",
+    "timezone": "المنطقة الزمنية",
+    "timezoneDescription": "حدد المنطقة الزمنية المحلية",
+    "dateFormat": "تنسيق التاريخ",
+    "dateFormatDescription": "اختر كيفية عرض التواريخ",
+    "currency": "العملة",
+    "currencyDescription": "العملة الافتراضية للبيانات المالية"
+  },
+  "notifications": {
+    "title": "إعدادات الإشعارات",
+    "emailNotifications": "إشعارات البريد الإلكتروني",
+    "emailDescription": "استلام إشعارات البريد الإلكتروني للتحديثات المهمة",
+    "pushNotifications": "إشعارات المتصفح",
+    "pushDescription": "استلام إشعارات المتصفح",
+    "smsNotifications": "إشعارات الرسائل القصيرة",
+    "smsDescription": "استلام إشعارات الرسائل القصيرة على هاتفك",
+    "notificationTypes": {
+      "title": "أنواع الإشعارات",
+      "system": "تحديثات النظام",
+      "attendance": "تنبيهات الحضور",
+      "leaves": "طلبات الإجازة",
+      "payroll": "تحديثات الرواتب",
+      "security": "تنبيهات الأمان"
+    }
+  },
+  "security": {
+    "title": "إعدادات الأمان",
+    "changePassword": "تغيير كلمة المرور",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmPassword": "تأكيد كلمة المرور الجديدة",
+    "twoFactor": "المصادقة الثنائية",
+    "twoFactorDescription": "إضافة طبقة إضافية من الأمان إلى حسابك",
+    "enable2FA": "تمكين 2FA",
+    "disable2FA": "تعطيل 2FA",
+    "sessions": "الجلسات النشطة",
+    "logoutAll": "تسجيل الخروج من جميع الأجهزة",
+    "loginHistory": "سجل تسجيل الدخول"
+  },
+  "appearance": {
+    "title": "المظهر",
+    "theme": "السمة",
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "افتراضي النظام",
+    "sidebar": "نمط الشريط الجانبي",
+    "sidebarCompact": "مضغوط",
+    "sidebarExpanded": "موسع",
+    "density": "كثافة العرض",
+    "comfortable": "مريح",
+    "compact": "مضغوط"
+  },
+  "form": {
+    "save": "حفظ الإعدادات",
+    "cancel": "إلغاء التغييرات",
+    "reset": "إعادة الافتراضي"
+  },
+  "messages": {
+    "saveSuccess": "تم حفظ الإعدادات بنجاح",
+    "resetSuccess": "تمت إعادة الإعدادات إلى الافتراضي",
+    "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+    "error": "فشل في حفظ الإعدادات"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "passwordMatch": "كلمات المرور غير متطابقة",
+    "invalidCurrentPassword": "كلمة المرور الحالية غير صحيحة"
+  }
+}

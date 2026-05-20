@@ -1,0 +1,80 @@
+{
+  "title": "Users Management",
+  "description": "Manage system users and their roles",
+  "addUser": "Add User",
+  "editUser": "Edit User",
+  "deleteUser": "Delete User",
+  "stats": {
+    "totalUsers": "Total Users",
+    "activeUsers": "Active",
+    "adminUsers": "Admins",
+    "pendingUsers": "Pending",
+    "suspendedUsers": "Suspended"
+  },
+  "table": {
+    "user": "User",
+    "role": "Role",
+    "status": "Status",
+    "phone": "Phone",
+    "organization": "Organization",
+    "lastLogin": "Last Login",
+    "emailVerified": "Verified",
+    "actions": "Actions"
+  },
+  "roles": {
+    "admin": "Admin",
+    "manager": "Manager",
+    "user": "User",
+    "viewer": "Viewer"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "suspended": "Suspended",
+    "pending": "Pending"
+  },
+  "form": {
+    "name": "Full Name",
+    "namePlaceholder": "Enter full name",
+    "email": "Email",
+    "emailPlaceholder": "user@example.com",
+    "phone": "Phone",
+    "phonePlaceholder": "+1234567890",
+    "password": "Password",
+    "passwordPlaceholder": "Min 8 characters",
+    "newPassword": "New Password (leave blank to keep current)",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmNewPassword": "Confirm New Password",
+    "confirmNewPasswordPlaceholder": "Confirm new password",
+    "passwordConfirmation": "Confirm Password",
+    "passwordConfirmationPlaceholder": "Re-enter password",
+    "role": "Role",
+    "rolePlaceholder": "Select role",
+    "status": "Status",
+    "statusPlaceholder": "Select status",
+    "organizationId": "Organization ID",
+    "branchId": "Branch ID"
+  },
+  "modalTitle": "Add User",
+  "editModalTitle": "Edit User",
+  "submit": "Create User",
+  "save": "Save Changes",
+  "cancel": "Cancel",
+  "emptyMessage": "No users found",
+  "messages": {
+    "createSuccess": "User created successfully",
+    "updateSuccess": "User updated successfully",
+    "deleteSuccess": "User deleted successfully",
+    "deleteConfirm": "Are you sure you want to delete this user?"
+  },
+  "validation": {
+    "required": "This field is required",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordMatch": "Passwords do not match",
+    "roleRequired": "Role is required",
+    "statusRequired": "Status is required"
+  }
+}

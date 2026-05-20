@@ -1,27 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useForm, type UseFormReturn } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useCreateParty, useUpdateParty } from './parties';
 import { DEFAULT_FORM_VALUES } from '../constants/party.constants';
 import type { Party, CreatePartyInput, UpdatePartyInput } from '../types/party.types';
-
-/**
- * Zod schema for party form validation
- */
-const partySchema = z.object({
-  code: z.string().min(1, 'Party code is required').max(50, 'Party code must be less than 50 characters'),
-  type: z.enum(['individual', 'company']),
-  display_name: z.string().min(1, 'Display name is required').max(255, 'Display name must be less than 255 characters'),
-  legal_name: z.string().max(255, 'Legal name must be less than 255 characters').optional(),
-  tax_number: z.string().max(50, 'Tax number must be less than 50 characters').optional(),
-  currency_id: z.number().nullable().optional(),
-  notes: z.string().optional(),
-  is_active: z.boolean().optional(),
-  roles: z.array(z.enum(['customer', 'supplier', 'agent', 'contractor'])).optional(),
-});
-
-export type PartyFormData = z.infer<typeof partySchema>;
+import { partySchema, type PartyFormData } from '../schemas/parties.schema';
 
 interface UsePartyFormProps {
   mode: 'create' | 'edit';
@@ -56,9 +39,9 @@ export function usePartyForm({
   const updateMutation = useUpdateParty();
 
   const form = useForm<PartyFormData>({
-    resolver: zodResolver(partySchema),
+    resolver: zodResolver(partySchema) as any,
     defaultValues: DEFAULT_FORM_VALUES,
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   // Populate form in edit mode

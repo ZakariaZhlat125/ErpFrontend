@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useCreatePlan, useUpdatePlan } from './plans';
 import { Plan, CreatePlanInput, UpdatePlanInput } from '../types/plans.types';
 import { DEFAULT_PLAN } from '../constants/plans.constants';
+import { planSchema, PlanFormData } from '../schemas/plans.schema';
 
 type FormMode = 'create' | 'edit';
 
@@ -13,10 +15,12 @@ export function usePlansForm(mode: FormMode, entity?: Plan, onSuccess?: () => vo
   const createMutation = useCreatePlan();
   const updateMutation = useUpdatePlan();
 
-  const form = useForm<CreatePlanInput | UpdatePlanInput>({
+  const form = useForm<PlanFormData>({
+    resolver: zodResolver(planSchema) as any,
+    mode: 'onBlur',
     defaultValues: mode === 'edit' && entity ? {
       name: entity.name,
-      description: entity.description,
+      description: entity.description || '',
       price: entity.price,
       billing_cycle: entity.billing_cycle,
       max_users: entity.max_users,
@@ -56,7 +60,7 @@ export function usePlansForm(mode: FormMode, entity?: Plan, onSuccess?: () => vo
     if (mode === 'edit' && entity) {
       form.reset({
         name: entity.name,
-        description: entity.description,
+        description: entity.description || '',
         price: entity.price,
         billing_cycle: entity.billing_cycle,
         max_users: entity.max_users,

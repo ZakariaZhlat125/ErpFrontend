@@ -1,0 +1,81 @@
+{
+  "title": "اشتراكات المنظمات",
+  "description": "إدارة اشتراكات المنظمات والفوترة",
+  "addSubscription": "إضافة اشتراك",
+  "editSubscription": "تعديل الاشتراك",
+  "deleteSubscription": "حذف الاشتراك",
+  "renewSubscription": "تجديد الاشتراك",
+  "cancelSubscription": "إلغاء الاشتراك",
+  "stats": {
+    "totalSubscriptions": "إجمالي الاشتراكات",
+    "activeSubscriptions": "نشط",
+    "pendingSubscriptions": "معلق",
+    "cancelledSubscriptions": "ملغي",
+    "expiredSubscriptions": "منتهي"
+  },
+  "table": {
+    "organization": "المنظمة",
+    "plan": "الخطة",
+    "status": "الحالة",
+    "billing": "الفوترة",
+    "price": "السعر",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "autoRenew": "التجديد التلقائي",
+    "actions": "الإجراءات"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "pending": "معلق",
+    "cancelled": "ملغي",
+    "expired": "منتهي"
+  },
+  "billingCycle": {
+    "monthly": "شهري",
+    "yearly": "سنوي"
+  },
+  "paymentMethod": {
+    "creditCard": "بطاقة ائتمان",
+    "paypal": "باي بال",
+    "bankTransfer": "تحويل بنكي",
+    "cash": "نقدي"
+  },
+  "form": {
+    "organizationId": "معرف المنظمة",
+    "organizationIdPlaceholder": "اختر المنظمة",
+    "planId": "معرف الخطة",
+    "planIdPlaceholder": "اختر الخطة",
+    "billingCycle": "دورة الفوترة",
+    "paymentMethod": "طريقة الدفع",
+    "paymentMethodPlaceholder": "اختر طريقة الدفع",
+    "selectPaymentMethod": "اختر طريقة الدفع",
+    "autoRenew": "التجديد التلقائي",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء"
+  },
+  "modalTitle": "إضافة اشتراك",
+  "editModalTitle": "تعديل الاشتراك",
+  "submit": "إنشاء اشتراك",
+  "save": "حفظ التغييرات",
+  "cancel": "إلغاء",
+  "emptyMessage": "لم يتم العثور على اشتراكات",
+  "messages": {
+    "createSuccess": "تم إنشاء الاشتراك بنجاح",
+    "updateSuccess": "تم تحديث الاشتراك بنجاح",
+    "deleteSuccess": "تم حذف الاشتراك بنجاح",
+    "renewSuccess": "تم تجديد الاشتراك بنجاح",
+    "cancelSuccess": "تم إلغاء الاشتراك بنجاح",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا الاشتراك؟",
+    "renewConfirm": "هل أنت متأكد من تجديد هذا الاشتراك؟",
+    "cancelConfirm": "هل أنت متأكد من إلغاء هذا الاشتراك؟"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "planRequired": "الخطة مطلوبة",
+    "billingCycleRequired": "دورة الفوترة مطلوبة",
+    "startDateRequired": "تاريخ البدء مطلوب",
+    "endDateRequired": "تاريخ الانتهاء مطلوب",
+    "organizationRequired": "المنظمة مطلوبة"
+  }
+}

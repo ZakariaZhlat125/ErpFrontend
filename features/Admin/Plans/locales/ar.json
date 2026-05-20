@@ -4,6 +4,8 @@
   "addPlan": "إضافة خطة",
   "editPlan": "تعديل الخطة",
   "deletePlan": "حذف الخطة",
+  "modalTitle": "إضافة خطة جديدة",
+  "submit": "إنشاء خطة",
   "stats": {
     "totalPlans": "إجمالي الخطط",
     "activePlans": "الخطط النشطة",
@@ -30,20 +32,44 @@
   },
   "form": {
     "name": "اسم الخطة",
+    "namePlaceholder": "مثال: خطة البداية",
     "description": "الوصف",
-    "price": "السعر",
+    "descriptionPlaceholder": "صف ما تقدمه هذه الخطة...",
+    "price": "السعر ($)",
+    "pricePlaceholder": "0.00",
     "billingCycle": "دورة الفوترة",
     "maxUsers": "أقصى عدد مستخدمين",
+    "maxUsersPlaceholder": "10",
     "maxBranches": "أقصى عدد فروع",
+    "maxBranchesPlaceholder": "1",
     "features": "المميزات",
     "isActive": "نشط",
     "isPopular": "شائع",
-    "sortOrder": "ترتيب"
+    "sortOrder": "ترتيب",
+    "sortOrderPlaceholder": "0"
   },
   "messages": {
     "createSuccess": "تم إنشاء الخطة بنجاح",
     "updateSuccess": "تم تحديث الخطة بنجاح",
     "deleteSuccess": "تم حذف الخطة بنجاح",
     "deleteConfirm": "هل أنت متأكد من حذف هذه الخطة؟"
+  },
+  "emptyMessage": "لم يتم العثور على خطط",
+  "activatePlan": "تفعيل الخطة",
+  "deactivatePlan": "إلغاء تفعيل الخطة",
+  "activate": "تفعيل",
+  "deactivate": "إلغاء تفعيل",
+  "delete": "حذف",
+  "deleteDescription": "لا يمكن التراجع عن هذا الإجراء.",
+  "activateDescription": "ستصبح هذه الخطة متاحة للمستخدمين.",
+  "deactivateDescription": "لن تكون هذه الخطة متاحة للمستخدمين بعد الآن.",
+  "toggleConfirmMessage": "هل أنت متأكد من أنك تريد {action} \"{name}\"؟",
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "minPrice": "يجب أن يكون السعر 0 أو أكبر",
+    "minUsers": "يجب أن يكون عدد المستخدمين على الأقل 1",
+    "minBranches": "يجب أن يكون عدد الفروع على الأقل 1",
+    "planNameRequired": "اسم الخطة مطلوب",
+    "billingCycleRequired": "دورة الفوترة مطلوبة"
   }
 }

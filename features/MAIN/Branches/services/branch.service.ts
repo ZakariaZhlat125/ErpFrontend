@@ -1,4 +1,8 @@
 import { apiClient } from '@/lib/api/client';
+import {
+  BRANCH_ENDPOINTS,
+  BRANCH_QUERY_KEYS 
+} from '../api/endpoints';
 import type {
   Branch,
   CreateBranchInput,
@@ -18,7 +22,7 @@ export const branchApi = {
    */
   async getAll(organizationId: number, filters?: BranchFilters): Promise<Branch[]> {
     const response = await apiClient.get<ApiResponse<Branch[]>>(
-      `/organizations/${organizationId}/branches`,
+      BRANCH_ENDPOINTS.LIST(organizationId),
       { params: filters }
     );
     return response.data.data;
@@ -29,7 +33,7 @@ export const branchApi = {
    */
   async getById(organizationId: number, branchId: number): Promise<Branch> {
     const response = await apiClient.get<ApiResponse<Branch>>(
-      `/organizations/${organizationId}/branches/${branchId}`
+      BRANCH_ENDPOINTS.DETAIL(organizationId, branchId)
     );
     return response.data.data;
   },
@@ -39,7 +43,7 @@ export const branchApi = {
    */
   async create(organizationId: number, data: CreateBranchInput): Promise<Branch> {
     const response = await apiClient.post<ApiResponse<Branch>>(
-      `/organizations/${organizationId}/branches`,
+      BRANCH_ENDPOINTS.CREATE(organizationId),
       data
     );
     return response.data.data;
@@ -54,7 +58,7 @@ export const branchApi = {
     data: UpdateBranchInput
   ): Promise<Branch> {
     const response = await apiClient.put<ApiResponse<Branch>>(
-      `/organizations/${organizationId}/branches/${branchId}`,
+      BRANCH_ENDPOINTS.UPDATE(organizationId, branchId),
       data
     );
     return response.data.data;
@@ -64,7 +68,7 @@ export const branchApi = {
    * Delete a branch
    */
   async delete(organizationId: number, branchId: number): Promise<void> {
-    await apiClient.delete(`/organizations/${organizationId}/branches/${branchId}`);
+    await apiClient.delete(BRANCH_ENDPOINTS.DELETE(organizationId, branchId));
   },
 
   /**
@@ -72,7 +76,7 @@ export const branchApi = {
    */
   async toggleStatus(organizationId: number, branchId: number): Promise<Branch> {
     const response = await apiClient.post<ApiResponse<Branch>>(
-      `/organizations/${organizationId}/branches/${branchId}/toggle-status`
+      BRANCH_ENDPOINTS.TOGGLE_STATUS(organizationId, branchId)
     );
     return response.data.data;
   },

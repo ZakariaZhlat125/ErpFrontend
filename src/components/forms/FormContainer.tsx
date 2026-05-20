@@ -66,10 +66,10 @@ export function FormContainer({ children, title, subtitle, error, success, onSub
           )}
 
           {children}
+          
+          {footer}
         </form>
       </div>
-
-      {footer}
     </div>
   );
 }

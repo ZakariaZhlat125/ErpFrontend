@@ -10,6 +10,7 @@ import { FormContainer } from '@/components/forms/FormContainer';
 import { RHFInput } from '@/components/forms/RHFInput';
 import { RHFSelect } from '@/components/forms/RHFSelect';
 import { useOrganizationForm, OrganizationFormValues } from '../../hooks/useOrganizationForm';
+import { useTranslations } from 'next-intl';
 
 const currencyOptions = [
   { label: 'USD - US Dollar', value: '1' },
@@ -47,6 +48,7 @@ interface CreateOrganizationFormProps {
 
 export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrganizationFormProps) {
   const { tokens } = useTheme();
+  const t = useTranslations('myEstablishment');
   
   const {
     form,
@@ -87,7 +89,7 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
       title=""
     >
       <FormContainer
-        title="Create New Organization"
+        title={t('modalTitle')}
         // subtitle="Fill in the details below to create a new organization"
         error={error}
         success={success}
@@ -97,15 +99,15 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
             {/* Basic Information */}
             <div>
               <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-                Basic Information
+                {t('sections.basicInfo')}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <RHFInput
                   methods={form}
                   name="name"
                   type="text"
-                  label="Organization Name"
-                  placeholder="enter text"
+                  label={t('form.name')}
+                  placeholder={t('form.namePlaceholder')}
                   required
                 />
 
@@ -113,7 +115,7 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                   methods={form}
                   name="legal_name"
                   type="text"
-                  label="Legal Name"
+                  label={t('form.legalName')}
                   required
                 /> 
 
@@ -121,14 +123,14 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                   methods={form}
                   name="tax_number"
                   type="text"
-                  label="Tax Number"
+                  label={t('form.taxNumber')}
                   required
                 />
 
                 <RHFSelect
                   methods={form}
                   name="base_currency_id"
-                  label="Base Currency"
+                  label={t('form.baseCurrency')}
                   required
                   options={currencyOptions}
                 />
@@ -138,13 +140,13 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
             {/* Regional Settings */}
             <div>
               <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-                Regional Settings
+                {t('sections.regionalSettings')}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <RHFSelect
                   methods={form}
                   name="timezone"
-                  label="Timezone"
+                  label={t('form.timezone')}
                   required
                   options={timezoneOptions}
                 />
@@ -152,7 +154,7 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                 <RHFSelect
                   methods={form}
                   name="locale"
-                  label="Locale"
+                  label={t('form.locale')}
                   required
                   options={localeOptions}
                 />
@@ -160,7 +162,7 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                 <RHFSelect
                   methods={form}
                   name="status"
-                  label="Status"
+                  label={t('form.status')}
                   required
                   options={statusOptions}
                 />
@@ -170,14 +172,14 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
             {/* Contact Information */}
             <div>
               <h2 className="text-lg font-semibold mb-4" style={{ color: tokens.text }}>
-                Contact Information
+                {t('sections.contactInfo')}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <RHFInput
                   methods={form}
                   name="address"
                   type="text"
-                  label="Address"
+                  label={t('form.address')}
                   required
                 />
 
@@ -185,7 +187,7 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                   methods={form}
                   name="phone"
                   type="text"
-                  label="Phone"
+                  label={t('form.phone')}
                   required
                 />
 
@@ -193,7 +195,7 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                   methods={form}
                   name="email"
                   type="email"
-                  label="Email"
+                  label={t('form.email')}
                   required
                 />
 
@@ -201,8 +203,8 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                   methods={form}
                   name="website"
                   type="text"
-                  label="Website"
-                  placeholder="https://example.com"
+                  label={t('form.website')}
+                  placeholder={t('form.websitePlaceholder')}
                 />
               </div>
             </div>
@@ -213,14 +215,14 @@ export function CreateOrganizationForm({ open, onClose, onSuccess }: CreateOrgan
                 variant="secondary"
                 onClick={handleReset}
               >
-                Reset
+                {t('reset')}
               </Button>
               <Button
                 variant="primary"
                 htmlType="submit"
                 isLoading={isPending}
               >
-                Create Organization
+                {t('submit')}
               </Button>
             </div>
           </div>

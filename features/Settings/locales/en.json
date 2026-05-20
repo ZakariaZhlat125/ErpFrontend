@@ -1,0 +1,83 @@
+{
+  "title": "Settings",
+  "description": "Manage your account settings and preferences",
+  "tabs": {
+    "general": "General",
+    "notifications": "Notifications",
+    "security": "Security",
+    "appearance": "Appearance",
+    "language": "Language"
+  },
+  "general": {
+    "title": "General Settings",
+    "language": "Language",
+    "languageDescription": "Select your preferred language",
+    "timezone": "Timezone",
+    "timezoneDescription": "Set your local timezone",
+    "dateFormat": "Date Format",
+    "dateFormatDescription": "Choose how dates are displayed",
+    "currency": "Currency",
+    "currencyDescription": "Default currency for financial data"
+  },
+  "notifications": {
+    "title": "Notification Settings",
+    "emailNotifications": "Email Notifications",
+    "emailDescription": "Receive email notifications for important updates",
+    "pushNotifications": "Push Notifications",
+    "pushDescription": "Receive browser push notifications",
+    "smsNotifications": "SMS Notifications",
+    "smsDescription": "Receive SMS notifications on your phone",
+    "notificationTypes": {
+      "title": "Notification Types",
+      "system": "System Updates",
+      "attendance": "Attendance Alerts",
+      "leaves": "Leave Requests",
+      "payroll": "Payroll Updates",
+      "security": "Security Alerts"
+    }
+  },
+  "security": {
+    "title": "Security Settings",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "twoFactor": "Two-Factor Authentication",
+    "twoFactorDescription": "Add an extra layer of security to your account",
+    "enable2FA": "Enable 2FA",
+    "disable2FA": "Disable 2FA",
+    "sessions": "Active Sessions",
+    "logoutAll": "Logout from all devices",
+    "loginHistory": "Login History"
+  },
+  "appearance": {
+    "title": "Appearance",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System Default",
+    "sidebar": "نمط الشريط الجانبي",
+    "sidebarCompact": "مضغوط",
+    "sidebarExpanded": "موسع",
+    "density": "كثافة العرض",
+    "comfortable": "مريح",
+    "compact": "مضغوط"
+  },
+  "form": {
+    "save": "Save Settings",
+    "cancel": "Cancel Changes",
+    "reset": "Reset to Default"
+  },
+  "messages": {
+    "saveSuccess": "Settings saved successfully",
+    "resetSuccess": "Settings reset to default",
+    "passwordChanged": "Password changed successfully",
+    "error": "Failed to save settings"
+  },
+  "validation": {
+    "required": "This field is required",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordMatch": "Passwords do not match",
+    "invalidCurrentPassword": "Current password is incorrect"
+  }
+}

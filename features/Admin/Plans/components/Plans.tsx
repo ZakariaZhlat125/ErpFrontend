@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui';
 import { ConfirmModal } from '@/components/ui/ConfirmModal';
@@ -21,6 +22,7 @@ import { EditPlan } from './EditForm/EditPlan';
 import { Plan } from '../types/plans.types';
 
 export function Plans() {
+  const t = useTranslations('plans');
   const {
     plans,
     totalPlans,
@@ -54,25 +56,25 @@ export function Plans() {
 
   const stats = [
     {
-      title: 'Total Plans',
+      title: t('stats.totalPlans'),
       value: totalPlans.toString(),
       icon: <DollarOutlined />,
       color: '#0ea5e9',
     },
     {
-      title: 'Active Plans',
+      title: t('stats.activePlans'),
       value: activePlans.toString(),
       icon: <CheckCircleOutlined />,
       color: '#10b981',
     },
     {
-      title: 'Popular Plans',
+      title: t('stats.popularPlans'),
       value: popularPlans.toString(),
       icon: <StarOutlined />,
       color: '#f59e0b',
     },
     {
-      title: 'Inactive Plans',
+      title: t('stats.inactivePlans'),
       value: inactivePlans.toString(),
       icon: <CloseCircleOutlined />,
       color: '#ef4444',
@@ -82,7 +84,7 @@ export function Plans() {
   const columns: Column<Plan>[] = [
     {
       key: 'name',
-      title: 'Plan',
+      title: t('table.plan'),
       dataIndex: 'name',
       render: (_: any, plan: Plan) => (
         <div className="flex items-center gap-3">
@@ -101,7 +103,7 @@ export function Plans() {
     },
     {
       key: 'price',
-      title: 'Price',
+      title: t('table.price'),
       dataIndex: 'price',
       sortable: true,
       render: (value: number) => (
@@ -110,7 +112,7 @@ export function Plans() {
     },
     {
       key: 'billing_cycle',
-      title: 'Billing',
+      title: t('table.billing'),
       dataIndex: 'billing_cycle',
       render: (value: string) => (
         <span className={`inline-flex items-center px-2 py-1 rounded-full text-[11px] font-medium ${
@@ -122,7 +124,7 @@ export function Plans() {
     },
     {
       key: 'max_users',
-      title: 'Users',
+      title: t('table.users'),
       dataIndex: 'max_users',
       sortable: true,
       render: (value: number) => (
@@ -131,7 +133,7 @@ export function Plans() {
     },
     {
       key: 'max_branches',
-      title: 'Branches',
+      title: t('table.branches'),
       dataIndex: 'max_branches',
       sortable: true,
       render: (value: number) => (
@@ -140,7 +142,7 @@ export function Plans() {
     },
     {
       key: 'is_active',
-      title: 'Status',
+      title: t('table.status'),
       dataIndex: 'is_active',
       render: (_: any, plan: Plan) => (
         <RadioGroup
@@ -149,15 +151,15 @@ export function Plans() {
           onChange={(val) => openToggleActiveModal(plan)}
           disabled={isTogglingActive}
           options={[
-            { label: 'Active',   value: true,  activeColor: 'success' },
-            { label: 'Inactive', value: false, activeColor: 'danger'  },
+            { label: t('status.active'),   value: true,  activeColor: 'success' },
+            { label: t('status.inactive'), value: false, activeColor: 'danger'  },
           ]}
         />
       ),
     },
     {
       key: 'is_popular',
-      title: 'Popular',
+      title: t('table.popular'),
       dataIndex: 'is_popular',
       render: (_: any, plan: Plan) => (
         <button onClick={() => handleTogglePopular(plan)} disabled={isTogglingPopular}>
@@ -173,14 +175,14 @@ export function Plans() {
   const actions: Action<Plan>[] = [
     {
       key: 'edit',
-      label: 'Edit',
+      label: t('editPlan'),
       icon: <EditOutlined />,
       variant: 'ghost',
       onClick: (plan) => openEditModal(plan),
     },
     {
       key: 'delete',
-      label: 'Delete',
+      label: t('deletePlan'),
       icon: <DeleteOutlined />,
       variant: 'ghost',
       onClick: (plan) => openDeleteModal(plan),
@@ -200,14 +202,14 @@ export function Plans() {
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
           <h1 className="text-[20px] font-bold leading-tight md:text-[22px] text-text">
-            Plans Management
+            {t('title')}
           </h1>
           <p className="mt-1 text-[13px] text-text-muted">
-            Manage subscription plans and pricing
+            {t('description')}
           </p>
         </div>
         <Button variant="primary" onClick={openCreateModal}>
-          <PlusOutlined /> Add Plan
+          <PlusOutlined /> {t('addPlan')}
         </Button>
       </div>
 
@@ -236,8 +238,8 @@ export function Plans() {
           actions={actions}
           loading={isLoading}
           idField="id"
-          emptyMessage="No plans found"
-          actionsColumnTitle="Actions"
+          emptyMessage={t('emptyMessage') || 'No plans found'}
+          actionsColumnTitle={t('table.actions')}
           actionsColumnWidth={120}
           pagination={{
             pageSize: filters.per_page ?? 15,
@@ -274,10 +276,10 @@ export function Plans() {
         onClose={closeToggleActiveModal}
         onConfirm={handleToggleActive}
         type={pendingTogglePlan?.is_active ? 'warning' : 'success'}
-        title={pendingTogglePlan?.is_active ? 'Deactivate Plan' : 'Activate Plan'}
-        message={`Are you sure you want to ${pendingTogglePlan?.is_active ? 'deactivate' : 'activate'} "${pendingTogglePlan?.name}"?`}
-        description={pendingTogglePlan?.is_active ? 'This plan will no longer be available to users.' : 'This plan will become available to users.'}
-        confirmText={pendingTogglePlan?.is_active ? 'Deactivate' : 'Activate'}
+        title={pendingTogglePlan?.is_active ? t('deactivatePlan') : t('activatePlan')}
+        message={t('toggleConfirmMessage', { action: pendingTogglePlan?.is_active ? t('deactivate') : t('activate'), name: pendingTogglePlan?.name ?? '' })}
+        description={pendingTogglePlan?.is_active ? t('deactivateDescription') : t('activateDescription')}
+        confirmText={pendingTogglePlan?.is_active ? t('deactivate') : t('activate')}
       />
 
       {/* Delete Confirm Modal */}
@@ -286,10 +288,10 @@ export function Plans() {
         onClose={closeDeleteModal}
         onConfirm={handleDelete}
         type="delete"
-        title="Delete Plan"
-        message="Are you sure you want to delete this plan?"
-        description="This action cannot be undone."
-        confirmText="Delete"
+        title={t('deletePlan')}
+        message={t('messages.deleteConfirm')}
+        description={t('deleteDescription')}
+        confirmText={t('delete')}
       />
     </>
   );

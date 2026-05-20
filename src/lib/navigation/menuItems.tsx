@@ -64,6 +64,13 @@ export const adminMenuItems: MenuItem[] = [
     permission: 'plans:read',
   },
   {
+    key: 'admin-subscriptions',
+    icon: <DollarOutlined />,
+    labelKey: 'admin.sidebar.subscriptions',
+    path: '/admin/subscriptions',
+    permission: 'subscriptions:read',
+  },
+  {
     key: 'admin-users',
     icon: <UserOutlined />,
     labelKey: 'admin.sidebar.users',

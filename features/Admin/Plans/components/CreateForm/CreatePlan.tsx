@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { FormContainer } from "@/components/forms/FormContainer";
 import { RHFInput } from "@/components/forms/RHFInput";
 import { RHFSelect } from "@/components/forms/RHFSelect";
@@ -17,13 +18,17 @@ interface CreatePlanProps {
 }
 
 export function CreatePlan({ isOpen, onClose, onSuccess }: CreatePlanProps) {
+  const t = useTranslations("plans");
   const handleSuccess = () => {
     onSuccess?.();
     onClose();
   };
   const { form, handleSubmit, isPending } = usePlansForm("create", undefined, handleSuccess);
 
-  const billingOptions = BILLING_CYCLE_OPTIONS.map((o) => ({ value: o.value, label: o.label }));
+  const billingOptions = BILLING_CYCLE_OPTIONS.map((o) => ({ 
+    value: o.value, 
+    label: t(`billingCycle.${o.value}`) 
+  }));
 
   const footer = (
     <div className="flex justify-end gap-3 pt-2">
@@ -32,9 +37,8 @@ export function CreatePlan({ isOpen, onClose, onSuccess }: CreatePlanProps) {
         variant="primary"
         isLoading={isPending}
         disabled={isPending}
-        onClick={handleSubmit}
       >
-        Create Plan
+        {t("submit")}
       </Button>
     </div>
   );
@@ -43,7 +47,7 @@ export function CreatePlan({ isOpen, onClose, onSuccess }: CreatePlanProps) {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Add New Plan"
+      title={t("modalTitle")}
       size="md"
       footer={null}
     >
@@ -57,8 +61,8 @@ export function CreatePlan({ isOpen, onClose, onSuccess }: CreatePlanProps) {
           <RHFInput
             methods={form}
             name="name"
-            label="Plan Name"
-            placeholder="e.g. Starter Plan"
+            label={t("form.name")}
+            placeholder={t("form.namePlaceholder")}
           />
         </div>
 
@@ -66,8 +70,8 @@ export function CreatePlan({ isOpen, onClose, onSuccess }: CreatePlanProps) {
           <RHFTextArea
             methods={form}
             name="description"
-            label="Description"
-            placeholder="Describe what this plan offers..."
+            label={t("form.description")}
+            placeholder={t("form.descriptionPlaceholder")}
             rows={3}
           />
         </div>
@@ -75,52 +79,52 @@ export function CreatePlan({ isOpen, onClose, onSuccess }: CreatePlanProps) {
         <RHFInput
           methods={form}
           name="price"
-          label="Price ($)"
+          label={t("form.price")}
           type="number"
-          placeholder="0.00"
+          placeholder={t("form.pricePlaceholder")}
         />
 
         <RHFSelect
           methods={form}
           name="billing_cycle"
-          label="Billing Cycle"
+          label={t("form.billingCycle")}
           options={billingOptions}
         />
 
         <RHFInput
           methods={form}
           name="max_users"
-          label="Max Users"
+          label={t("form.maxUsers")}
           type="number"
-          placeholder="10"
+          placeholder={t("form.maxUsersPlaceholder")}
         />
 
         <RHFInput
           methods={form}
           name="max_branches"
-          label="Max Branches"
+          label={t("form.maxBranches")}
           type="number"
-          placeholder="1"
+          placeholder={t("form.maxBranchesPlaceholder")}
         />
 
         <RHFInput
           methods={form}
           name="sort_order"
-          label="Sort Order"
+          label={t("form.sortOrder")}
           type="number"
-          placeholder="0"
+          placeholder={t("form.sortOrderPlaceholder")}
         />
 
         <div className="flex flex-col gap-4 sm:col-span-2">
           <RHFSwitch
             methods={form}
             name="is_active"
-            label="Active"
+            label={t("form.isActive")}
           />
           <RHFSwitch
             methods={form}
             name="is_popular"
-            label="Mark as Popular"
+            label={t("form.isPopular")}
           />
         </div>
       </div>

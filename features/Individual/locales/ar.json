@@ -1,0 +1,154 @@
+{
+  "title": "بوابة الموظف",
+  "description": "إدارة ملفك الشخصي والحضور وطلبات الإجازة",
+  "dashboard": {
+    "title": "لوحتي",
+    "welcome": "مرحبًا بعودتك",
+    "quickActions": "إجراءات سريعة",
+    "recentActivity": "النشاط الأخير",
+    "announcements": "الإعلانات"
+  },
+  "attendance": {
+    "title": "حضوري",
+    "description": "عرض سجلات الحضور وتاريخ تسجيل الدخول والخروج",
+    "checkIn": "تسجيل الدخول",
+    "checkOut": "تسجيل الخروج",
+    "currentStatus": "الحالة الحالية",
+    "today": "اليوم",
+    "thisWeek": "هذا الأسبوع",
+    "thisMonth": "هذا الشهر",
+    "totalWorkingHours": "إجمالي ساعات العمل",
+    "present": "حاضر",
+    "absent": "غائب",
+    "late": "متأخر",
+    "earlyLeave": "مغادرة مبكرة",
+    "onLeave": "في إجازة",
+    "table": {
+      "date": "التاريخ",
+      "checkIn": "تسجيل الدخول",
+      "checkOut": "تسجيل الخروج",
+      "workingHours": "ساعات العمل",
+      "status": "الحالة",
+      "location": "الموقع",
+      "notes": "ملاحظات"
+    },
+    "stats": {
+      "presentDays": "أيام الحضور",
+      "absentDays": "أيام الغياب",
+      "lateArrivals": "التأخيرات",
+      "earlyDepartures": "المغادرات المبكرة",
+      "totalHours": "إجمالي الساعات"
+    },
+    "messages": {
+      "checkInSuccess": "تم تسجيل الدخول بنجاح",
+      "checkOutSuccess": "تم تسجيل الخروج بنجاح",
+      "locationRequired": "الوصول إلى الموقع مطلوب للحضور"
+    }
+  },
+  "leaves": {
+    "title": "إجازاتي",
+    "description": "عرض رصيد الإجازة وتقديم طلبات الإجازة",
+    "addLeave": "طلب إجازة",
+    "editLeave": "تعديل الطلب",
+    "deleteLeave": "إلغاء الطلب",
+    "balance": {
+      "title": "رصيد الإجازة",
+      "annual": "الإجازة السنوية",
+      "sick": "الإجازة المرضية",
+      "casual": "الإجازة العرضية",
+      "remaining": "المتبقي",
+      "used": "المستخدم",
+      "total": "الإجمالي"
+    },
+    "status": {
+      "pending": "معلق",
+      "approved": "تمت الموافقة",
+      "rejected": "مرفوض",
+      "cancelled": "ملغي"
+    },
+    "types": {
+      "annual": "إجازة سنوية",
+      "sick": "إجازة مرضية",
+      "casual": "إجازة عرضية",
+      "unpaid": "إجازة غير مدفوعة",
+      "other": "أخرى"
+    },
+    "table": {
+      "type": "النوع",
+      "startDate": "تاريخ البدء",
+      "endDate": "تاريخ الانتهاء",
+      "days": "الأيام",
+      "status": "الحالة",
+      "reason": "السبب",
+      "actions": "الإجراءات"
+    },
+    "form": {
+      "type": "نوع الإجازة",
+      "typePlaceholder": "اختر نوع الإجازة",
+      "startDate": "تاريخ البدء",
+      "endDate": "تاريخ الانتهاء",
+      "reason": "السبب",
+      "reasonPlaceholder": "أدخل سبب الإجازة...",
+      "attachment": "المرفق",
+      "attachmentPlaceholder": "تحميل مستند داعم (اختياري)"
+    },
+    "modalTitle": "طلب إجازة",
+    "editModalTitle": "تعديل طلب الإجازة",
+    "submit": "تقديم الطلب",
+    "save": "حفظ التغييرات",
+    "cancel": "إلغاء",
+    "emptyMessage": "لم يتم العثور على طلبات إجازة",
+    "messages": {
+      "createSuccess": "تم تقديم طلب الإجازة بنجاح",
+      "updateSuccess": "تم تحديث طلب الإجازة بنجاح",
+      "deleteSuccess": "تم إلغاء طلب الإجازة بنجاح",
+      "deleteConfirm": "هل أنت متأكد من إلغاء طلب الإجازة؟"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "typeRequired": "نوع الإجازة مطلوب",
+      "startDateRequired": "تاريخ البدء مطلوب",
+      "endDateRequired": "تاريخ الانتهاء مطلوب",
+      "reasonRequired": "السبب مطلوب",
+      "invalidDateRange": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء"
+    }
+  },
+  "profile": {
+    "title": "ملفي الشخصي",
+    "description": "عرض وتحديث المعلومات الشخصية",
+    "personalInfo": "المعلومات الشخصية",
+    "employmentInfo": "معلومات التوظيف",
+    "contactInfo": "معلومات الاتصال",
+    "changePassword": "تغيير كلمة المرور",
+    "form": {
+      "name": "الاسم الكامل",
+      "namePlaceholder": "أدخل اسمك الكامل",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "your@email.com",
+      "phone": "الهاتف",
+      "phonePlaceholder": "+1234567890",
+      "address": "العنوان",
+      "addressPlaceholder": "أدخل عنوانك",
+      "department": "القسم",
+      "position": "المنصب",
+      "employeeId": "معرف الموظف",
+      "hireDate": "تاريخ التوظيف",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة"
+    },
+    "save": "حفظ التغييرات",
+    "cancel": "إلغاء",
+    "edit": "تعديل الملف الشخصي",
+    "messages": {
+      "updateSuccess": "تم تحديث الملف الشخصي بنجاح",
+      "passwordChanged": "تم تغيير كلمة المرور بنجاح"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "emailInvalid": "عنوان البريد الإلكتروني غير صالح",
+      "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+      "passwordMatch": "كلمات المرور غير متطابقة"
+    }
+  }
+}

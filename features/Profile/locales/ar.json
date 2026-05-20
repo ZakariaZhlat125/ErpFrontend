@@ -1,0 +1,103 @@
+{
+  "title": "إعدادات الملف الشخصي",
+  "description": "إدارة المعلومات الشخصية وتفاصيل الحساب",
+  "tabs": {
+    "personal": "المعلومات الشخصية",
+    "employment": "التوظيف",
+    "documents": "المستندات",
+    "account": "الحساب"
+  },
+  "personal": {
+    "title": "المعلومات الشخصية",
+    "avatar": "الصورة الشخصية",
+    "changePhoto": "تغيير الصورة",
+    "removePhoto": "إزالة الصورة",
+    "form": {
+      "firstName": "الاسم الأول",
+      "firstNamePlaceholder": "أدخل الاسم الأول",
+      "lastName": "اسم العائلة",
+      "lastNamePlaceholder": "أدخل اسم العائلة",
+      "email": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "your@email.com",
+      "phone": "رقم الهاتف",
+      "phonePlaceholder": "+1234567890",
+      "birthDate": "تاريخ الميلاد",
+      "gender": "الجنس",
+      "genderPlaceholder": "اختر الجنس",
+      "nationality": "الجنسية",
+      "nationalityPlaceholder": "اختر الجنسية",
+      "address": "عنوان المنزل",
+      "addressPlaceholder": "أدخل عنوان منزلك",
+      "emergencyContact": "جهة اتصال للطوارئ",
+      "emergencyName": "اسم جهة الاتصال",
+      "emergencyPhone": "هاتف جهة الاتصال"
+    },
+    "save": "حفظ التغييرات"
+  },
+  "employment": {
+    "title": "معلومات التوظيف",
+    "readOnly": "تتم إدارة هذه المعلومات من قبل الموارد البشرية",
+    "employeeId": "معرف الموظف",
+    "department": "القسم",
+    "position": "المنصب",
+    "manager": "المدير",
+    "hireDate": "تاريخ التوظيف",
+    "employmentType": "نوع التوظيف",
+    "workLocation": "موقع العمل",
+    "salary": "الراتب",
+    "benefits": "المزايا"
+  },
+  "documents": {
+    "title": "المستندات",
+    "upload": "تحميل مستند",
+    "dragDrop": "اسحب الملفات وأفلتها هنا",
+    "or": "أو",
+    "browse": "تصفح الملفات",
+    "types": {
+      "id": "بطاقة الهوية",
+      "passport": "جواز السفر",
+      "visa": "التأشيرة",
+      "contract": "عقد العمل",
+      "certificate": "الشهادة",
+      "other": "أخرى"
+    },
+    "table": {
+      "name": "اسم المستند",
+      "type": "النوع",
+      "uploaded": "تاريخ التحميل",
+      "size": "الحجم",
+      "actions": "الإجراءات"
+    },
+    "deleteConfirm": "هل أنت متأكد من حذف هذا المستند؟"
+  },
+  "account": {
+    "title": "إعدادات الحساب",
+    "username": "اسم المستخدم",
+    "changePassword": "تغيير كلمة المرور",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "twoFactor": "المصادقة الثنائية",
+    "twoFactorStatus": "الحالة",
+    "twoFactorEnabled": "مفعل",
+    "twoFactorDisabled": "معطل",
+    "deactivate": "تعطيل الحساب",
+    "deactivateWarning": "لا يمكن التراجع عن هذا الإجراء. سيتم حذف جميع بياناتك بشكل دائم."
+  },
+  "messages": {
+    "updateSuccess": "تم تحديث الملف الشخصي بنجاح",
+    "photoUpdated": "تم تحديث الصورة الشخصية",
+    "photoRemoved": "تمت إزالة الصورة الشخصية",
+    "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+    "documentUploaded": "تم تحميل المستند بنجاح",
+    "documentDeleted": "تم حذف المستند",
+    "error": "حدث خطأ"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "emailInvalid": "عنوان البريد الإلكتروني غير صالح",
+    "phoneInvalid": "رقم الهاتف غير صالح",
+    "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "passwordMatch": "كلمات المرور غير متطابقة"
+  }
+}
