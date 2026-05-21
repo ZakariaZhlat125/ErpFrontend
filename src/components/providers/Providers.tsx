@@ -29,7 +29,7 @@ export function Providers({ children, messages, locale }: ProvidersProps) {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <NextIntlClientProvider messages={messages} locale={locale}>
+          <NextIntlClientProvider messages={messages} locale={locale} timeZone="Asia/Riyadh">
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>

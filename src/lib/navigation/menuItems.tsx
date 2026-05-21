@@ -24,6 +24,7 @@ import {
   CheckSquareOutlined,
   AuditOutlined,
   GiftOutlined,
+  MoneyCollectOutlined,
 } from '@ant-design/icons';
 
 export interface MenuItem {
@@ -76,6 +77,13 @@ export const adminMenuItems: MenuItem[] = [
     labelKey: 'admin.sidebar.users',
     path: '/admin/users',
     permission: 'users:read',
+  },
+  {
+    key: 'admin-currencies',
+    icon: <MoneyCollectOutlined />,
+    labelKey: 'admin.sidebar.currencies',
+    path: '/admin/currencies',
+    permission: 'currencies:read',
   },
   {
     key: 'admin-roles',

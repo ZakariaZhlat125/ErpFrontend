@@ -1,0 +1,77 @@
+{
+  "title": "Currency Management",
+  "description": "Manage system currencies and exchange rates",
+  "addCurrency": "Add Currency",
+  "editCurrency": "Edit Currency",
+  "deleteCurrency": "Delete Currency",
+  "deleteModalTitle": "Delete Currency",
+  "deleteConfirmMessage": "Are you sure you want to delete this currency?",
+  "deleteConfirmDescription": "This action cannot be undone. All currency data will be permanently removed.",
+  "stats": {
+    "totalCurrencies": "Total Currencies",
+    "active": "Active",
+    "baseCurrency": "Base Currency",
+    "inactive": "Inactive"
+  },
+  "table": {
+    "currency": "Currency",
+    "symbol": "Symbol",
+    "exchangeRate": "Exchange Rate",
+    "decimalPlaces": "Decimal Places",
+    "separators": "Separators",
+    "status": "Status",
+    "base": "Base",
+    "actions": "Actions"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "toggle": "Toggle Status",
+    "setBase": "Set as Base",
+    "base": "Base"
+  },
+  "form": {
+    "code": "Currency Code",
+    "codePlaceholder": "Select or enter currency code (e.g., USD)",
+    "name": "Currency Name",
+    "namePlaceholder": "Enter currency name",
+    "symbol": "Symbol",
+    "symbolPlaceholder": "e.g., $, €, £",
+    "exchangeRate": "Exchange Rate",
+    "exchangeRatePlaceholder": "1.000000",
+    "newExchangeRate": "New Exchange Rate",
+    "newExchangeRatePlaceholder": "Enter new exchange rate",
+    "decimalSeparator": "Decimal Separator",
+    "thousandsSeparator": "Thousands Separator",
+    "decimalPlaces": "Decimal Places",
+    "isActive": "Active"
+  },
+  "modalTitle": "Add Currency",
+  "editModalTitle": "Edit Currency",
+  "updateRateTitle": "Update Exchange Rate - {{code}}",
+  "updateRate": "Update Rate",
+  "currentRate": "Current Rate",
+  "submit": "Create Currency",
+  "save": "Save Changes",
+  "cancel": "Cancel",
+  "emptyMessage": "No currencies found",
+  "messages": {
+    "createSuccess": "Currency created successfully",
+    "updateSuccess": "Currency updated successfully",
+    "deleteSuccess": "Currency deleted successfully",
+    "rateUpdateSuccess": "Exchange rate updated successfully",
+    "setBaseSuccess": "Base currency updated successfully",
+    "toggleActiveSuccess": "Currency status updated successfully"
+  },
+  "validation": {
+    "required": "This field is required",
+    "codeRequired": "Currency code is required",
+    "codeLength": "Currency code must be 3 letters",
+    "nameRequired": "Currency name is required",
+    "symbolRequired": "Currency symbol is required",
+    "exchangeRateRequired": "Exchange rate is required",
+    "exchangeRatePositive": "Exchange rate must be greater than 0"
+  }
+}

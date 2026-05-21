@@ -51,12 +51,15 @@ class ApiClient {
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
 
-          try {
-            const { signIn } = await import('next-auth/react');
-            await signIn();
-            return this.instance(originalRequest);
-          } catch (refreshError) {
-            return Promise.reject(refreshError);
+          // Only attempt client-side re-auth if we're in the browser
+          if (typeof window !== 'undefined') {
+            try {
+              const { signIn } = await import('next-auth/react');
+              await signIn();
+              return this.instance(originalRequest);
+            } catch (refreshError) {
+              return Promise.reject(refreshError);
+            }
           }
         }
 

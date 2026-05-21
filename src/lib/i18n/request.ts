@@ -30,28 +30,39 @@ async function listNamespaces(locale?: string): Promise<string[]> {
     });
   } catch {}
 
-  // Load from features/{feature}/locales/{locale}
+  // Load from features/{feature}/locales/{locale} (flat) and features/{group}/{sub}/locales/{locale} (nested)
   const featuresDir = path.join(process.cwd(), 'features');
   try {
-    const features = await fs.readdir(featuresDir);
-    
-    for (const feature of features) {
-      const featureLocaleDir = path.join(
-        featuresDir,
-        feature,
-        'locales',
-        safeLocale
-      );
-      
+    const entries = await fs.readdir(featuresDir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+
+      // Try flat: features/{feature}/locales/{locale}
+      const flatLocaleDir = path.join(featuresDir, entry.name, 'locales', safeLocale);
       try {
-        const files = await fs.readdir(featureLocaleDir);
-        const featureNamespaces = files
+        const files = await fs.readdir(flatLocaleDir);
+        files
           .filter((f) => f.endsWith('.json'))
-          .map((f) => f.replace(/\.json$/, ''));
-        
-        featureNamespaces.forEach(ns => {
-          if (!namespaces.includes(ns)) namespaces.push(ns);
-        });
+          .map((f) => f.replace(/\.json$/, ''))
+          .forEach(ns => { if (!namespaces.includes(ns)) namespaces.push(ns); });
+      } catch {}
+
+      // Try nested: features/{group}/{sub}/locales/{locale} (Admin, MAIN, etc.)
+      const groupDir = path.join(featuresDir, entry.name);
+      try {
+        const subEntries = await fs.readdir(groupDir, { withFileTypes: true });
+        for (const sub of subEntries) {
+          if (!sub.isDirectory()) continue;
+          const nestedLocaleDir = path.join(groupDir, sub.name, 'locales', safeLocale);
+          try {
+            const files = await fs.readdir(nestedLocaleDir);
+            files
+              .filter((f) => f.endsWith('.json'))
+              .map((f) => f.replace(/\.json$/, ''))
+              .forEach(ns => { if (!namespaces.includes(ns)) namespaces.push(ns); });
+          } catch {}
+        }
       } catch {}
     }
   } catch {}
@@ -68,14 +79,33 @@ async function loadNamespace(
     return (await import(`../../locales/${locale}/${ns}.json`)).default;
   } catch {}
 
-  // Then try features/{feature}/locales
+  // Then try features/{feature}/locales (flat) and features/{group}/{sub}/locales (nested)
   try {
     const featuresDir = path.join(process.cwd(), 'features');
-    const features = await fs.readdir(featuresDir);
-    
-    for (const feature of features) {
+    const entries = await fs.readdir(featuresDir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+
+      // Try flat: features/{feature}/locales/{locale}/{ns}.json
+      const flatPath = path.join(featuresDir, entry.name, 'locales', locale, `${ns}.json`);
       try {
-        return (await import(`../../../features/${feature}/locales/${locale}/${ns}.json`)).default;
+        const content = await fs.readFile(flatPath, 'utf-8');
+        return JSON.parse(content);
+      } catch {}
+
+      // Try nested: features/{group}/{sub}/locales/{locale}/{ns}.json (Admin, MAIN, etc.)
+      const groupDir = path.join(featuresDir, entry.name);
+      try {
+        const subEntries = await fs.readdir(groupDir, { withFileTypes: true });
+        for (const sub of subEntries) {
+          if (!sub.isDirectory()) continue;
+          const nestedPath = path.join(groupDir, sub.name, 'locales', locale, `${ns}.json`);
+          try {
+            const content = await fs.readFile(nestedPath, 'utf-8');
+            return JSON.parse(content);
+          } catch {}
+        }
       } catch {}
     }
   } catch {}
@@ -98,6 +128,7 @@ export default getRequestConfig(async ({requestLocale}) => {
 
   return {
     locale,
-    messages
+    messages,
+    timeZone: 'Asia/Riyadh'
   };
 });

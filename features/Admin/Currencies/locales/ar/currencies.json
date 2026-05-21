@@ -1,0 +1,77 @@
+{
+  "title": "إدارة العملات",
+  "description": "إدارة العملات وأسعار الصرف",
+  "addCurrency": "إضافة عملة",
+  "editCurrency": "تعديل العملة",
+  "deleteCurrency": "حذف العملة",
+  "deleteModalTitle": "حذف العملة",
+  "deleteConfirmMessage": "هل أنت متأكد من حذف هذه العملة؟",
+  "deleteConfirmDescription": "لا يمكن التراجع عن هذا الإجراء. سيتم حذف جميع بيانات العملة بشكل دائم.",
+  "stats": {
+    "totalCurrencies": "إجمالي العملات",
+    "active": "نشطة",
+    "baseCurrency": "العملة الأساسية",
+    "inactive": "غير نشطة"
+  },
+  "table": {
+    "currency": "العملة",
+    "symbol": "الرمز",
+    "exchangeRate": "سعر الصرف",
+    "decimalPlaces": "الأماكن العشرية",
+    "separators": "الفواصل",
+    "status": "الحالة",
+    "base": "أساسية",
+    "actions": "إجراءات"
+  },
+  "actions": {
+    "edit": "تعديل",
+    "delete": "حذف",
+    "activate": "تنشيط",
+    "deactivate": "إلغاء التنشيط",
+    "toggle": "تبديل الحالة",
+    "setBase": "تعيين كأساسية",
+    "base": "أساسية"
+  },
+  "form": {
+    "code": "رمز العملة",
+    "codePlaceholder": "اختر أو أدخل رمز العملة (مثل USD)",
+    "name": "اسم العملة",
+    "namePlaceholder": "أدخل اسم العملة",
+    "symbol": "الرمز",
+    "symbolPlaceholder": "مثل $، €، £",
+    "exchangeRate": "سعر الصرف",
+    "exchangeRatePlaceholder": "1.000000",
+    "newExchangeRate": "سعر الصرف الجديد",
+    "newExchangeRatePlaceholder": "أدخل سعر الصرف الجديد",
+    "decimalSeparator": "فاصل الكسور",
+    "thousandsSeparator": "فاصل الآلاف",
+    "decimalPlaces": "الأماكن العشرية",
+    "isActive": "نشطة"
+  },
+  "modalTitle": "إضافة عملة",
+  "editModalTitle": "تعديل العملة",
+  "updateRateTitle": "تحديث سعر الصرف - {{code}}",
+  "updateRate": "تحديث السعر",
+  "currentRate": "السعر الحالي",
+  "submit": "إنشاء عملة",
+  "save": "حفظ التغييرات",
+  "cancel": "إلغاء",
+  "emptyMessage": "لا توجد عملات",
+  "messages": {
+    "createSuccess": "تم إنشاء العملة بنجاح",
+    "updateSuccess": "تم تحديث العملة بنجاح",
+    "deleteSuccess": "تم حذف العملة بنجاح",
+    "rateUpdateSuccess": "تم تحديث سعر الصرف بنجاح",
+    "setBaseSuccess": "تم تحديث العملة الأساسية بنجاح",
+    "toggleActiveSuccess": "تم تحديث حالة العملة بنجاح"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "codeRequired": "رمز العملة مطلوب",
+    "codeLength": "يجب أن يكون رمز العملة 3 أحرف",
+    "nameRequired": "اسم العملة مطلوب",
+    "symbolRequired": "رمز العملة مطلوب",
+    "exchangeRateRequired": "سعر الصرف مطلوب",
+    "exchangeRatePositive": "يجب أن يكون سعر الصرف أكبر من 0"
+  }
+}
